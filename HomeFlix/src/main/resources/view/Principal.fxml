@@ -8,9 +8,9 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #FF8C00;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #FF8C00;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.ControllerPrincipal">
    <children>
-      <Button layoutX="87.0" layoutY="358.0" mnemonicParsing="false" style="-fx-background-color: #B1896A; -fx-border-color: #000000; -fx-border-radius: 5px; -fx-background-radius: 10px;" text="Buscar" textFill="WHITE" />
+      <Button layoutX="87.0" layoutY="358.0" mnemonicParsing="false" onAction="#botonBusqueda" style="-fx-background-color: #B1896A; -fx-border-color: #000000; -fx-border-radius: 5px; -fx-background-radius: 10px;" text="Buscar" textFill="WHITE" />
       <Button layoutX="282.0" layoutY="358.0" mnemonicParsing="false" style="-fx-background-color: #B1896A; -fx-border-color: #000000; -fx-border-radius: 5px; -fx-background-radius: 10px;" text="Join" textFill="WHITE" />
       <Button layoutX="455.0" layoutY="358.0" mnemonicParsing="false" style="-fx-background-color: #B1896A; -fx-border-color: #000000; -fx-border-radius: 5px; -fx-background-radius: 10px;" text="Start Host" textFill="WHITE" />
       <Label layoutX="70.0" layoutY="117.0" text="Ultimos Videos Vistos">
@@ -23,13 +23,13 @@
             <Font size="18.0" />
          </font>
       </Label>
-      <TreeView layoutX="15.0" layoutY="145.0" prefHeight="145.0" prefWidth="282.0" />
-      <TreeView layoutX="301.0" layoutY="145.0" prefHeight="145.0" prefWidth="282.0" />
+      <TreeView fx:id="ultimosVideos" layoutX="15.0" layoutY="145.0" prefHeight="145.0" prefWidth="282.0" />
+      <TreeView fx:id="listasVideos" layoutX="301.0" layoutY="145.0" prefHeight="145.0" prefWidth="282.0" />
       <ImageView fitHeight="130.0" fitWidth="135.0" layoutX="233.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@ChifrijoLogo.png" />
          </image>
       </ImageView>
-      <Button layoutX="14.0" layoutY="14.0" mnemonicParsing="false" style="-fx-background-color: #B1896A; -fx-border-color: #000000; -fx-border-radius: 5px; -fx-background-radius: 10px;" text="Volver" textFill="WHITE" />
+      <Button layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onAction="#botonVolver" style="-fx-background-color: #B1896A; -fx-border-color: #000000; -fx-border-radius: 5px; -fx-background-radius: 10px;" text="Volver" textFill="WHITE" />
    </children>
 </AnchorPane>
