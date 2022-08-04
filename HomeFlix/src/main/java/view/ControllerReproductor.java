@@ -39,4 +39,7 @@ public class ControllerReproductor implements Initializable {
         mediaView.setMediaPlayer(mediaPlayer);
     }
 
+    public void playVideo(){
+    mediaPlayer.play();
+    }
 }
