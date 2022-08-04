@@ -48,4 +48,15 @@ public class ControllerRegistro {
         stage.setScene(scene);
         stage.show();
     }
+
+    public void botonCrear(ActionEvent event) throws IOException {
+        String nombre = nombreTF.getText();
+        String identificacion = identificacionTF.getText();
+        String primerApellido = primerApellidoTF.getText();
+        String segundoApellido = segundoApellidoTF.getText();
+        String usuario = usuarioTF.getText();
+        String contrasena = contrasenaTF.getText();
+        String confirmarContrasena = confirmarContrasenaTF.getText();
+    }
+
 }
