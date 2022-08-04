@@ -10,7 +10,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="427.0" prefWidth="651.0" style="-fx-background-color: #FF8C00;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane prefHeight="427.0" prefWidth="651.0" style="-fx-background-color: #FF8C00;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.ControllerLogin">
    <children>
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DARKORANGE" height="372.0" layoutX="154.0" layoutY="19.0" stroke="BLACK" strokeLineCap="ROUND" strokeLineJoin="ROUND" strokeType="OUTSIDE" width="334.0" />
       <ImageView fitHeight="138.0" fitWidth="143.0" layoutX="250.0" layoutY="18.0" pickOnBounds="true" preserveRatio="true">
@@ -30,11 +30,11 @@
       </Text>
       <TextField id="inputUsernameLogin" fx:id="usuarioTF" layoutX="253.0" layoutY="192.0" promptText="Usuario" style="-fx-background-color: #FFF6E8;" />
       <TextField id="inputPasswordLogin" fx:id="contrasenaTF" layoutX="252.0" layoutY="266.0" promptText="Contraseña" style="-fx-background-color: #FFF6E8;" />
-      <Button layoutX="264.0" layoutY="319.0" mnemonicParsing="false" style="-fx-background-color: #B1896A; -fx-border-color: #000000;" text="Crear una cuenta" textFill="WHITE">
+      <Button layoutX="264.0" layoutY="319.0" mnemonicParsing="false" onAction="#cambiarEscenaRegistro" style="-fx-background-color: #B1896A; -fx-border-color: #000000;" text="Crear una cuenta" textFill="WHITE">
          <font>
             <Font size="14.0" />
          </font></Button>
-      <Button layoutX="563.0" layoutY="374.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="64.0" style="-fx-background-color: #B1896A; -fx-border-color: #000000;" text="Login" textFill="WHITE">
+      <Button layoutX="563.0" layoutY="374.0" mnemonicParsing="false" onAction="#botonLogin" prefHeight="25.0" prefWidth="64.0" style="-fx-background-color: #B1896A; -fx-border-color: #000000;" text="Login" textFill="WHITE">
          <font>
             <Font size="14.0" />
          </font></Button>
