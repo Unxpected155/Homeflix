@@ -32,11 +32,40 @@ public class ControllerLogin {
     public void botonLogin(ActionEvent event) throws IOException {
         String usuario = usuarioTF.getText();
         String contrasenia = contrasenaTF.getText();
+        ResultSet resultSet = null;
+        Connection connection = null;
+        PreparedStatement prs = null;
+        try {
+            connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/javafx-homeflix", "root", "toor");
+            prs = connection.prepareStatement("SELECT password FROM cuentapersona WHERE username = ?");
+            prs.setString(1, usuario);
+            resultSet = prs.executeQuery();
+            if (!resultSet.isBeforeFirst()) {
+                System.out.println("Usuario no encontrado en la base de datos!");
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setContentText("El usuario no existe!");
+                alert.show();
+            } else {
+                while (resultSet.next()) {
+                    String retrievedPassword = resultSet.getString("password");
+                    if (retrievedPassword.equals(contrasenia)) {
+                        root = FXMLLoader.load(getClass().getResource("Principal.fxml"));
+                        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                        scene = new Scene(root);
+                        stage.setScene(scene);
+                        stage.show();
+                    } else {
+                        System.out.println("La contrasenia es incorrecta");
+                        Alert alert = new Alert(Alert.AlertType.ERROR);
+                        alert.setContentText("La contraseña es incorrecta");
+                        alert.show();
+                    }
+                }
+            }
 
-        root = FXMLLoader.load(getClass().getResource("Principal.fxml"));
-        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
     }
 }
