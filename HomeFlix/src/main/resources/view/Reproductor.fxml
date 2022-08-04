@@ -4,11 +4,11 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.media.MediaView?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #FF8C00;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #FF8C00;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.ControllerReproductor">
     <children>
-        <MediaView fitHeight="300.0" fitWidth="550.0" layoutX="30.0" />
-        <Button layoutX="242.0" layoutY="331.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="141.0" style="-fx-background-color: #B1896A; -fx-border-radius: 5px; -fx-background-radius: 10px; -fx-border-color: #000000;" text="PLAY" textFill="WHITE" />
-        <Button layoutX="420.0" layoutY="331.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="141.0" style="-fx-background-color: #B1896A; -fx-border-radius: 5px; -fx-background-radius: 10px; -fx-border-color: #000000;" text="RESET" textFill="WHITE" />
-        <Button layoutX="53.0" layoutY="331.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="141.0" style="-fx-background-color: #B1896A; -fx-border-radius: 5px; -fx-background-radius: 10px; -fx-border-color: #000000;" text="PAUSE" textFill="WHITE" />
+        <MediaView fx:id="mediaView" fitHeight="300.0" fitWidth="550.0" layoutX="30.0" />
+        <Button fx:id="playButton" layoutX="242.0" layoutY="331.0" mnemonicParsing="false" onAction="#playVideo" prefHeight="35.0" prefWidth="141.0" style="-fx-background-color: #B1896A; -fx-border-radius: 5px; -fx-background-radius: 10px; -fx-border-color: #000000;" text="PLAY" textFill="WHITE" />
+        <Button fx:id="resetButton" layoutX="420.0" layoutY="331.0" mnemonicParsing="false" onAction="#resetVideo" prefHeight="35.0" prefWidth="141.0" style="-fx-background-color: #B1896A; -fx-border-radius: 5px; -fx-background-radius: 10px; -fx-border-color: #000000;" text="RESET" textFill="WHITE" />
+        <Button fx:id="pauseButton" layoutX="53.0" layoutY="331.0" mnemonicParsing="false" onAction="#pauseVideo" prefHeight="35.0" prefWidth="141.0" style="-fx-background-color: #B1896A; -fx-border-radius: 5px; -fx-background-radius: 10px; -fx-border-color: #000000;" text="PAUSE" textFill="WHITE" />
     </children>
 </AnchorPane>
