@@ -59,26 +59,73 @@ public class ControllerRegistro {
         String confirmarContrasena = confirmarContrasenaTF.getText();
         PreparedStatement ps;
         Connection connection;
+        PreparedStatement prs;
+        ResultSet resultSet;
+        boolean bandera = true;
+        boolean validarContrasenia = true;
+        String upperCaseChars = "(.*[A-Z].*)";
+        String lowerCaseChars = "(.*[a-z].*)";
+        String specialChars = "(.*[@,#,$,%].*$)";
         if(contrasena.equals(confirmarContrasena)){
-            try {
-                connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/javafx-homeflix", "root", "toor");
-                    ps = connection.prepareStatement("INSERT INTO cuentapersona (username, password, nombre, identificacion, primerApellido, segundoApellido) VALUES (?,?,?,?,?,?)");
-                    ps.setString(1,usuario);
-                    ps.setString(2,contrasena);
-                    ps.setString(3,nombre);
-                    ps.setString(4,identificacion);
-                    ps.setString(5,primerApellido);
-                    ps.setString(6,segundoApellido);
-                    ps.executeUpdate();
-                    root = FXMLLoader.load(getClass().getResource("Login.fxml"));
-                    stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-                    scene = new Scene(root);
-                    stage.setScene(scene);
-                    stage.show();
+            if(contrasena.length() < 6){
+                System.out.println("La contrasenia contiene menos de 6 caracteres");
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setContentText("La contraseña contiene menos de 6 caracteres");
+                alert.show();
+                validarContrasenia = false;
+            } else if(!contrasena.matches(upperCaseChars)){
+                System.out.println("La contrasenia no contiene ninguna mayuscula");
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setContentText("La contraseña no contiene ninguna mayuscula");
+                alert.show();
+                validarContrasenia = false;
+            } else if(!contrasena.matches(lowerCaseChars)){
+                System.out.println("La contrasenia no contiene ninguna minuscula");
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setContentText("La contraseña no contiene ninguna minuscula");
+                alert.show();
+                validarContrasenia = false;
+            } else if(!contrasena.matches(specialChars)){
+                System.out.println("La contrasenia no contiene ningun caracter especial");
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setContentText("La contraseña tiene que tener almenos uno de los siguientes caracteres especiales: @#$%");
+                alert.show();
+                validarContrasenia = false;
+            }
+            if(validarContrasenia){
+                try {
+                    connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/javafx-homeflix", "root", "toor");
+                    prs = connection.prepareStatement("SELECT username FROM cuentapersona");
+                    resultSet = prs.executeQuery();
+                    while (resultSet.next()) {
+                        String retrievedUsername = resultSet.getString("username");
+                        if (retrievedUsername.equals(usuario)) {
+                            System.out.println("Usuario ya existe");
+                            Alert alert = new Alert(Alert.AlertType.ERROR);
+                            alert.setContentText("Usuario ya existe");
+                            alert.show();
+                            bandera = false;
+                            break;
+                        }
+                    } if (bandera){
+                        ps = connection.prepareStatement("INSERT INTO cuentapersona (username, password, nombre, identificacion, primerApellido, segundoApellido) VALUES (?,?,?,?,?,?)");
+                        ps.setString(1,usuario);
+                        ps.setString(2,contrasena);
+                        ps.setString(3,nombre);
+                        ps.setString(4,identificacion);
+                        ps.setString(5,primerApellido);
+                        ps.setString(6,segundoApellido);
+                        ps.executeUpdate();
+                        root = FXMLLoader.load(getClass().getResource("Login.fxml"));
+                        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+                        scene = new Scene(root);
+                        stage.setScene(scene);
+                        stage.show();
+                    }
 
-
-            } catch (SQLException e){
-                e.printStackTrace();
+                } catch (SQLException e){
+                    e.printStackTrace();
+                }
             }
 
         } else {
