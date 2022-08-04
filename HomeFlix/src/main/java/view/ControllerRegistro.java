@@ -59,4 +59,19 @@ public class ControllerRegistro {
         String confirmarContrasena = confirmarContrasenaTF.getText();
     }
 
+    public void buscarAvatar(){
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setTitle("Buscar Imagen");
+
+        fileChooser.getExtensionFilters().addAll(
+                new FileChooser.ExtensionFilter("All Images", "*.*"),
+                new FileChooser.ExtensionFilter("JPG", "*.jpg"),
+                new FileChooser.ExtensionFilter("PNG", "*.png")
+        );
+
+        File imgFile = fileChooser.showOpenDialog(null);
+        if (imgFile != null){
+            avatar.setImage(new Image(imgFile.toURI().toString()));
+        }
+    }
 }
