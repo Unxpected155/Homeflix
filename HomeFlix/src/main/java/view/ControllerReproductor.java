@@ -42,4 +42,8 @@ public class ControllerReproductor implements Initializable {
     public void playVideo(){
     mediaPlayer.play();
     }
+
+    public void pauseVideo(){
+    mediaPlayer.pause();
+    }
 }
