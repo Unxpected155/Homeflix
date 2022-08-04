@@ -57,6 +57,37 @@ public class ControllerRegistro {
         String usuario = usuarioTF.getText();
         String contrasena = contrasenaTF.getText();
         String confirmarContrasena = confirmarContrasenaTF.getText();
+        PreparedStatement ps;
+        Connection connection;
+        if(contrasena.equals(confirmarContrasena)){
+            try {
+                connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/javafx-homeflix", "root", "toor");
+                    ps = connection.prepareStatement("INSERT INTO cuentapersona (username, password, nombre, identificacion, primerApellido, segundoApellido) VALUES (?,?,?,?,?,?)");
+                    ps.setString(1,usuario);
+                    ps.setString(2,contrasena);
+                    ps.setString(3,nombre);
+                    ps.setString(4,identificacion);
+                    ps.setString(5,primerApellido);
+                    ps.setString(6,segundoApellido);
+                    ps.executeUpdate();
+                    root = FXMLLoader.load(getClass().getResource("Login.fxml"));
+                    stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+                    scene = new Scene(root);
+                    stage.setScene(scene);
+                    stage.show();
+
+
+            } catch (SQLException e){
+                e.printStackTrace();
+            }
+
+        } else {
+            System.out.println("La contraseñas no coinciden");
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setContentText("La contraseñas no coinciden");
+            alert.show();
+        }
+
     }
 
     public void buscarAvatar(){
