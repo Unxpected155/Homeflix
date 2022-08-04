@@ -29,4 +29,11 @@ public class ControllerPrincipal {
         stage.setScene(scene);
         stage.show();
     }
+    public void botonVolver(ActionEvent event) throws IOException {
+        root = FXMLLoader.load(getClass().getResource("Login.fxml"));
+        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+    }
 }
