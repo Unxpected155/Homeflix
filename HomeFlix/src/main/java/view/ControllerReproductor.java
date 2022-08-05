@@ -49,4 +49,6 @@ public class ControllerReproductor implements Initializable {
     public void resetVideo() {
         mediaPlayer.seek(Duration.seconds(0.0));
     }
+
+
 }
