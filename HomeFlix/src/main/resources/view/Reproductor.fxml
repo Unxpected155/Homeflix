@@ -12,6 +12,6 @@
         <Button fx:id="resetButton" layoutX="312.0" layoutY="325.0" mnemonicParsing="false" onAction="#resetVideo" prefHeight="27.0" prefWidth="108.0" style="-fx-background-color: #B1896A; -fx-border-radius: 5px; -fx-background-radius: 10px; -fx-border-color: #000000;" text="RESET" textFill="WHITE" />
         <Button fx:id="pauseButton" layoutX="41.0" layoutY="325.0" mnemonicParsing="false" onAction="#pauseVideo" prefHeight="27.0" prefWidth="108.0" style="-fx-background-color: #B1896A; -fx-border-radius: 5px; -fx-background-radius: 10px; -fx-border-color: #000000;" text="PAUSE" textFill="WHITE" />
       <Slider fx:id="progressBar" layoutX="9.0" layoutY="300.0" prefHeight="14.0" prefWidth="580.0" />
-      <Button fx:id="resetButton1" layoutX="439.0" layoutY="325.0" mnemonicParsing="false" onAction="#resetVideo" prefHeight="27.0" prefWidth="108.0" style="-fx-background-color: #B1896A; -fx-border-radius: 5px; -fx-background-radius: 10px; -fx-border-color: #000000;" text="FullScreen" textFill="WHITE" />
+      <Button fx:id="resetButton1" layoutX="444.0" layoutY="325.0" mnemonicParsing="false" onAction="#resetVideo" prefHeight="27.0" prefWidth="108.0" style="-fx-background-color: #B1896A; -fx-border-radius: 5px; -fx-background-radius: 10px; -fx-border-color: #000000;" text="FullScreen" textFill="WHITE" />
     </children>
 </AnchorPane>
