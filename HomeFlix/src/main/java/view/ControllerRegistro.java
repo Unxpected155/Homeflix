@@ -1,5 +1,7 @@
 package view;
 
+import DBConexion.DAOUsuarioImpl;
+import Interfaces.DAOUsuario;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -12,6 +14,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
+import model.Usuario;
 
 import java.io.File;
 import java.io.IOException;
@@ -49,7 +52,7 @@ public class ControllerRegistro {
         stage.show();
     }
 
-    public void botonCrear(ActionEvent event) throws IOException {
+    public void botonCrear(ActionEvent event) throws Exception {
         String nombre = nombreTF.getText();
         String identificacion = identificacionTF.getText();
         String primerApellido = primerApellidoTF.getText();
@@ -57,11 +60,7 @@ public class ControllerRegistro {
         String usuario = usuarioTF.getText();
         String contrasena = contrasenaTF.getText();
         String confirmarContrasena = confirmarContrasenaTF.getText();
-        PreparedStatement ps;
-        Connection connection;
-        PreparedStatement prs;
-        ResultSet resultSet;
-        boolean bandera = true;
+        String avatar = "temp";
         boolean validarContrasenia = true;
         String upperCaseChars = "(.*[A-Z].*)";
         String lowerCaseChars = "(.*[a-z].*)";
@@ -93,48 +92,25 @@ public class ControllerRegistro {
                 validarContrasenia = false;
             }
             if(validarContrasenia){
+                Usuario usuarioTemp = new Usuario(nombre,primerApellido,segundoApellido,identificacion,usuario,contrasena,avatar);
                 try {
-                    connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/javafx-homeflix", "root", "toor");
-                    prs = connection.prepareStatement("SELECT username FROM cuentapersona");
-                    resultSet = prs.executeQuery();
-                    while (resultSet.next()) {
-                        String retrievedUsername = resultSet.getString("username");
-                        if (retrievedUsername.equals(usuario)) {
-                            System.out.println("Usuario ya existe");
-                            Alert alert = new Alert(Alert.AlertType.ERROR);
-                            alert.setContentText("Usuario ya existe");
-                            alert.show();
-                            bandera = false;
-                            break;
-                        }
-                    } if (bandera){
-                        ps = connection.prepareStatement("INSERT INTO cuentapersona (username, password, nombre, identificacion, primerApellido, segundoApellido) VALUES (?,?,?,?,?,?)");
-                        ps.setString(1,usuario);
-                        ps.setString(2,contrasena);
-                        ps.setString(3,nombre);
-                        ps.setString(4,identificacion);
-                        ps.setString(5,primerApellido);
-                        ps.setString(6,segundoApellido);
-                        ps.executeUpdate();
-                        root = FXMLLoader.load(getClass().getResource("Login.fxml"));
-                        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-                        scene = new Scene(root);
-                        stage.setScene(scene);
-                        stage.show();
-                    }
-
-                } catch (SQLException e){
-                    e.printStackTrace();
+                    DAOUsuario dao = new DAOUsuarioImpl();
+                    dao.agregarUsuario(usuarioTemp);
+                    root = FXMLLoader.load(getClass().getResource("Login.fxml"));
+                    stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+                    scene = new Scene(root);
+                    stage.setScene(scene);
+                    stage.show();
+                } catch (Exception e){
+                    System.out.println(e.getMessage());
                 }
             }
-
         } else {
             System.out.println("La contraseñas no coinciden");
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setContentText("La contraseñas no coinciden");
             alert.show();
         }
-
     }
 
     public void buscarAvatar(){
