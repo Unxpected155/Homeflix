@@ -7,7 +7,7 @@ import java.sql.SQLException;
 public class DBConexion {
 
     protected Connection conexion;
-    private final String DB_URL= "jdbc:mysql://localhost:3306/javafx-homeflix";
+    private final String DB_URL= "jdbc:mysql://localhost:3306/proto";
 
     private final String USER = "root";
     private final String PASSWORD = "toor";
