@@ -45,7 +45,42 @@ public class DAOVideoImpl extends DBConexion implements DAOVideo {
                 video.setCategory(rs.getString("categoria"));
                 video.setDate(rs.getString("fechaAnadido"));
                 video.setDescripcion(rs.getString("descripcion"));
+                video.setLocalizacion(rs.getString("localizacion"));
                 listarVideos.add(video);
+            }
+            rs.close();
+            st.close();
+        }catch (Exception e){
+            throw e;
+        } finally {
+            this.cerrar();
+        }
+        return listarVideos;
+    }
+
+    @Override
+    public ArrayList<Video> listarVideoNC(String nombre, String categoria) throws Exception {
+        ArrayList<Video> listarVideos = null;
+        try{
+            this.conectar();
+            PreparedStatement st = this.conexion.prepareStatement("SELECT * FROM video WHERE nombre=? AND categoria=?");
+            st.setString(1, nombre);
+            st.setString(2, categoria);
+            listarVideos = new ArrayList<>();
+            ResultSet rs = st.executeQuery();
+            while(rs.next()) {
+                String retrivedNombre = rs.getString("nombre");
+                String retrievedCategoria = rs.getString("categoria");
+                if(retrivedNombre.equalsIgnoreCase(nombre) && retrievedCategoria.equalsIgnoreCase(categoria)){
+                    Video video = new Video();
+                    video.setName(rs.getString("nombre"));
+                    video.setDuracion(rs.getDouble("duracion"));
+                    video.setCategory(rs.getString("categoria"));
+                    video.setDate(rs.getString("fechaAnadido"));
+                    video.setDescripcion(rs.getString("descripcion"));
+                    video.setLocalizacion(rs.getString("localizacion"));
+                    listarVideos.add(video);
+                }
             }
             rs.close();
             st.close();
