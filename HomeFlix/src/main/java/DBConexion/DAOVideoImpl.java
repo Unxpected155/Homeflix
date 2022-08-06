@@ -11,16 +11,17 @@ import java.util.ArrayList;
 
 public class DAOVideoImpl extends DBConexion implements DAOVideo {
     @Override
-    public void agregarVideos(Video video) throws Exception {
+    public void agregarVideos (String nombre, String categoria, double duracion, String dia, String descripcion, String localizacion) throws Exception {
         boolean bandera = true;
         try {
             this.conectar();
-            PreparedStatement st = this.conexion.prepareStatement("INSERT INTO video (nombre, categoria, duracion, fechaAnadido, descripcion) VALUES (?,?,?,?,?)");
-            st.setString(1, video.getName());
-            st.setString(2, video.getCategory());
-            st.setDouble(3, video.getDuracion());
-            st.setString(4, video.getDate());
-            st.setString(5, video.getDescripcion());
+            PreparedStatement st = this.conexion.prepareStatement("INSERT INTO video (nombre, categoria, duracion, fechaAnadido, descripcion, localizacion) VALUES (?,?,?,?,?,?)");
+            st.setString(1, nombre);
+            st.setString(2, categoria);
+            st.setDouble(3, duracion);
+            st.setString(4, dia);
+            st.setString(5, descripcion);
+            st.setString(6, localizacion);
             st.executeUpdate();
         } catch (Exception e) {
             throw e;

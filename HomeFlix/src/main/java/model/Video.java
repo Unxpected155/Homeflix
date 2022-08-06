@@ -15,25 +15,29 @@ public class Video {
 
     private String descripcion;
 
+    private String localizacion;
+
     private ArrayList<Usuario> likes;
 
-    public Video(String name, String category, double duracion, String date, String descripcion, ArrayList<Usuario> likes) {
+    public Video(String name, String category, double duracion, String date, String descripcion, String localizacion, ArrayList<Usuario> likes) {
         this.name = name;
         this.category = category;
         this.duracion = duracion;
         this.date = date;
         this.descripcion = descripcion;
+        this.localizacion = localizacion;
         this.likes = likes;
     }
     public Video(){
 
     }
-    public Video(String name, String category, double duracion, String date, String descripcion) {
+    public Video(String name, String category, double duracion, String date, String descripcion, String localizacion) {
         this.name = name;
         this.category = category;
         this.duracion = duracion;
         this.date = date;
         this.descripcion = descripcion;
+        this.localizacion = localizacion;
         this.likes = new ArrayList<Usuario>();
     }
 
@@ -47,6 +51,14 @@ public class Video {
 
     public String getCategory() {
         return category;
+    }
+
+    public String getLocalizacion() {
+        return localizacion;
+    }
+
+    public void setLocalizacion(String localizacion) {
+        this.localizacion = localizacion;
     }
 
     public void setCategory(String category) {
@@ -93,6 +105,7 @@ public class Video {
                 ", duracion=" + duracion +
                 ", date='" + date + '\'' +
                 ", descripcion='" + descripcion + '\'' +
+                ", localizacion='" + localizacion + '\'' +
                 ", likes=" + likes +
                 '}';
     }
