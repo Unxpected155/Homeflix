@@ -7,11 +7,11 @@
 
 <AnchorPane prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #FF8C00;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.ControllerReproductor">
     <children>
-        <MediaView fx:id="mediaView" fitHeight="300.0" fitWidth="550.0" layoutX="30.0" />
+        <MediaView fx:id="mediaView" fitHeight="300.0" fitWidth="550.0" layoutX="25.0" nodeOrientation="INHERIT" pickOnBounds="true" />
         <Button fx:id="playButton" layoutX="171.0" layoutY="325.0" mnemonicParsing="false" onAction="#playVideo" prefHeight="27.0" prefWidth="108.0" style="-fx-background-color: #B1896A; -fx-border-radius: 5px; -fx-background-radius: 10px; -fx-border-color: #000000;" text="PLAY" textFill="WHITE" />
         <Button fx:id="resetButton" layoutX="312.0" layoutY="325.0" mnemonicParsing="false" onAction="#resetVideo" prefHeight="27.0" prefWidth="108.0" style="-fx-background-color: #B1896A; -fx-border-radius: 5px; -fx-background-radius: 10px; -fx-border-color: #000000;" text="RESET" textFill="WHITE" />
         <Button fx:id="pauseButton" layoutX="41.0" layoutY="325.0" mnemonicParsing="false" onAction="#pauseVideo" prefHeight="27.0" prefWidth="108.0" style="-fx-background-color: #B1896A; -fx-border-radius: 5px; -fx-background-radius: 10px; -fx-border-color: #000000;" text="PAUSE" textFill="WHITE" />
       <Slider fx:id="progressBar" layoutX="9.0" layoutY="300.0" prefHeight="14.0" prefWidth="580.0" />
-      <Button fx:id="resetButton1" layoutX="444.0" layoutY="325.0" mnemonicParsing="false" onAction="#resetVideo" prefHeight="27.0" prefWidth="108.0" style="-fx-background-color: #B1896A; -fx-border-radius: 5px; -fx-background-radius: 10px; -fx-border-color: #000000;" text="FullScreen" textFill="WHITE" />
+      <Button fx:id="botonFullScreen" layoutX="444.0" layoutY="325.0" mnemonicParsing="false" onAction="#fullScreen" prefHeight="27.0" prefWidth="108.0" style="-fx-background-color: #B1896A; -fx-border-radius: 5px; -fx-background-radius: 10px; -fx-border-color: #000000;" text="FullScreen" textFill="WHITE" />
     </children>
 </AnchorPane>
