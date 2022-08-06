@@ -21,7 +21,9 @@ public class Usuario {
         this.contrasena = contrasena;
         this.avatar = avatar;
     }
+    public Usuario(){
 
+    }
     public String getNombre() {
         return nombre;
     }
