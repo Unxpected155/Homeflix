@@ -74,7 +74,10 @@ public class ControllerAgregarVideo {
             try {
                 DAOVideo daoVideo = new DAOVideoImpl();
                 daoVideo.agregarVideos(nombre, categoria, 13.00, fechaAnadido, descripcion,localizacion );
-
+                System.out.println("El video fue agregado exitosamente");
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                alert.setContentText("El video fue agregado exitosamente");
+                alert.show();
             } catch (Exception e) {
                 System.out.println(e.getMessage());
             }
