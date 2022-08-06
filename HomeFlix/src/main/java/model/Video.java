@@ -25,6 +25,9 @@ public class Video {
         this.descripcion = descripcion;
         this.likes = likes;
     }
+    public Video(){
+
+    }
     public Video(String name, String category, double duracion, String date, String descripcion) {
         this.name = name;
         this.category = category;
