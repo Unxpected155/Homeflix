@@ -68,7 +68,7 @@ public class ControllerReproductor implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
-        file = new File("D:\\Fotos & videos\\Rocket League\\Carritos.mp4");
+        file = new File("C:\\Users\\Gabri\\OneDrive\\Escritorio\\Video.mp4");
         media = new Media(file.toURI().toString());
         mediaPlayer = new MediaPlayer(media);
         mediaView.setMediaPlayer(mediaPlayer);
