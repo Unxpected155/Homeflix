@@ -8,6 +8,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
@@ -42,7 +43,8 @@ public class ControllerAgregarVideo {
         stage.setScene(scene);
         stage.show();
     }
-    public void buscarVideo(){
+
+    public void buscarVideo() {
         FileChooser fileChooser = new FileChooser();
         fileChooser.setTitle("Buscar Video");
 
@@ -51,9 +53,32 @@ public class ControllerAgregarVideo {
         );
 
         File vidFile = fileChooser.showOpenDialog(null);
-        if (vidFile != null){
+        if (vidFile != null) {
             videoLB.setText(vidFile.toString());
 
         }
+    }
+
+    public void botonAgregar() {
+        String nombre = nombreTF.getText();
+        String categoria = categoriaTF.getText();
+        String descripcion = descripcionTF.getText();
+        String fechaAnadido = java.time.LocalDate.now().toString();
+        String localizacion = videoLB.getText();
+        if (nombreTF.getText().isEmpty() || categoriaTF.getText().isEmpty() || descripcionTF.getText().isEmpty() || localizacion.isEmpty()) {
+            System.out.println("Hay un espacio sin llenar o no hay video seleccionado");
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setContentText("Hay un espacio sin llenar o no hay video seleccionado");
+            alert.show();
+        } else {
+            try {
+                DAOVideo daoVideo = new DAOVideoImpl();
+                daoVideo.agregarVideos(nombre, categoria, 13.00, fechaAnadido, descripcion,localizacion );
+
+            } catch (Exception e) {
+                System.out.println(e.getMessage());
+            }
+        }
+
     }
 }
