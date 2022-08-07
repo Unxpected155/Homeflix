@@ -189,6 +189,16 @@ public class ControllerReproductor implements Initializable {
         }
     });
 
+    vBoxParent.sceneProperty().addListener(new ChangeListener<Scene>() {
+        @Override
+        public void changed(ObservableValue<? extends Scene> observableValue, Scene escenaVieja, Scene nuevaEscena) {//esta funcion se llama cuando cambia la escena de tamanio, utiliza la vieja escena con la nueva
+        if (escenaVieja == null && nuevaEscena != null){
+            mvVideo.fitHeightProperty().bind(nuevaEscena.heightProperty().subtract(hboxControls.heightProperty().add(20)));//cambia el tamanio del scene
+            //le quitamos el div de los controles para que nuevaEscena no se ponga encima de los controles que hemos puesto
+        }
+        }
+    });
+
     }
 
 
