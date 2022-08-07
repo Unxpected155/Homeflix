@@ -97,7 +97,7 @@ public class ControllerReproductor implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
-        mediaVideo = new Media(new File("D:\\Fotos & videos\\Jre-legacy\\Chang_gritando.mp4").toURI().toString());
+        mediaVideo = new Media(new File("C:\\Users\\Gabri\\OneDrive\\Escritorio\\Video.mp4").toURI().toString());
         mpVideo = new MediaPlayer(mediaVideo);
         mvVideo.setMediaPlayer(mpVideo);
 
@@ -151,11 +151,11 @@ public class ControllerReproductor implements Initializable {
                     atEndOfVideo = false;
                     isPlaying = false;
                 }
-                if(isPlaying){//si esta en pausa
+                if (isPlaying) {//si esta en pausa
                     buttonPlay.setGraphic(ivPlay);//cuando este en play cambia la foto de play
                     mpVideo.pause();
                     isPlaying = false;
-                }else {
+                } else {
                     buttonPlay.setGraphic(ivPause);
                     mpVideo.play();
                     isPlaying = true;
@@ -168,93 +168,114 @@ public class ControllerReproductor implements Initializable {
 
         tiempoActualVideo();
 
-    sliderVolume.valueProperty().addListener(new InvalidationListener() {
-        @Override
-        public void invalidated(Observable observable) {
-            mpVideo.setVolume(sliderVolume.getValue());
-            if(mpVideo.getVolume() != 0.0){//si el volumen es distinto a 0 la imagen del volumen cambia a muteado
-                labelVolume.setGraphic(ivMute);
-                isMuted = true;
-            }
-        }
-    });
-
-    labelVolume.setOnMouseClicked(new EventHandler<MouseEvent>() {//modifica la imagen del volumen y el nivel del volumen
-        @Override
-        public void handle(MouseEvent mouseEvent) {
-            if(isMuted){//cuando modifique el volumen si el volumen esta en 0.0 cambiara a no muteado
-                labelVolume.setGraphic(ivVolume);
-                sliderVolume.setValue(0.2);
-                isMuted = false;
-            }else{//cuando modifique el volumen si esta en 0.0 cambiara a muteado
-                labelVolume.setGraphic(ivMute);
-                sliderVolume.setValue(0);
-                isMuted = true;
-            }
-        }
-    });
-
-    vBoxParent.sceneProperty().addListener(new ChangeListener<Scene>() {
-        @Override
-        public void changed(ObservableValue<? extends Scene> observableValue, Scene escenaVieja, Scene nuevaEscena) {//esta funcion se llama cuando cambia la escena de tamanio, utiliza la vieja escena con la nueva
-        if (escenaVieja == null && nuevaEscena != null){
-            mvVideo.fitHeightProperty().bind(nuevaEscena.heightProperty().subtract(hboxControls.heightProperty().add(20)));//cambia el tamanio del scene
-            //le quitamos el div de los controles para que nuevaEscena no se ponga encima de los controles que hemos puesto
-        }
-        }
-    });
-
-    labelFullScreen.setOnMouseClicked(new EventHandler<MouseEvent>() {
-        @Override
-        public void handle(MouseEvent mouseEvent) {
-            Label label = (Label) mouseEvent.getSource();
-            Stage stage = (Stage) label.getScene().getWindow();
-            if (stage.isFullScreen()){
-                stage.setFullScreen(false);
-                labelFullScreen.setGraphic(ivFullScreen);
-            }else{
-                stage.setFullScreen(true);
-                labelFullScreen.setGraphic(ivExit);
-            }
-            stage.addEventHandler(KeyEvent.KEY_PRESSED, new EventHandler<KeyEvent>() {
-                @Override
-                public void handle(KeyEvent keyEvent) {
-                    if(keyEvent.getCode() == KeyCode.ESCAPE){
-                        labelFullScreen.setGraphic(ivFullScreen);
-                    }
+        sliderVolume.valueProperty().addListener(new InvalidationListener() {
+            @Override
+            public void invalidated(Observable observable) {
+                mpVideo.setVolume(sliderVolume.getValue());
+                if (mpVideo.getVolume() != 0.0) {//si el volumen es distinto a 0 la imagen del volumen cambia a muteado
+                    labelVolume.setGraphic(ivMute);
+                    isMuted = true;
                 }
-            });
-        }
-    });
-
-    mpVideo.totalDurationProperty().addListener(new ChangeListener<Duration>() {
-        @Override
-        public void changed(ObservableValue<? extends Duration> observableValue, Duration viejaDuracion, Duration nuevaDuracion) {
-            sliderTime.setMax(nuevaDuracion.toSeconds());
-            labelTotalTime.setText(obtenerTiempo(nuevaDuracion));
-        }
-    });
-
-    sliderTime.valueChangingProperty().addListener(new ChangeListener<Boolean>() {
-        @Override
-        public void changed(ObservableValue<? extends Boolean> observableValue, Boolean cambiaba, Boolean estaCambiando) {
-            if(!estaCambiando){
-                mpVideo.seek(Duration.seconds(sliderTime.getValue()));
             }
-        }
-    });
+        });
 
-    sliderTime.valueProperty().addListener(new ChangeListener<Number>() {
-        @Override
-        public void changed(ObservableValue<? extends Number> observableValue, Number viejoNum, Number nuevoNum) {
-           double tiempoActual = mpVideo.getCurrentTime().toSeconds();
-           if(Math.abs(tiempoActual - nuevoNum.doubleValue()) > 0.5){
-               mpVideo.seek(Duration.seconds(nuevoNum.doubleValue()));
-           }
-           labelEsFinalVideo(labelCurrentTime.getText(), labelTotalTime.getText());
-        }
-    });
+        labelVolume.setOnMouseClicked(new EventHandler<MouseEvent>() {//modifica la imagen del volumen y el nivel del volumen
+            @Override
+            public void handle(MouseEvent mouseEvent) {
+                if (isMuted) {//cuando modifique el volumen si el volumen esta en 0.0 cambiara a no muteado
+                    labelVolume.setGraphic(ivVolume);
+                    sliderVolume.setValue(0.2);
+                    isMuted = false;
+                } else {//cuando modifique el volumen si esta en 0.0 cambiara a muteado
+                    labelVolume.setGraphic(ivMute);
+                    sliderVolume.setValue(0);
+                    isMuted = true;
+                }
+            }
+        });
 
+        vBoxParent.sceneProperty().addListener(new ChangeListener<Scene>() {
+            @Override
+            public void changed(ObservableValue<? extends Scene> observableValue, Scene escenaVieja, Scene nuevaEscena) {//esta funcion se llama cuando cambia la escena de tamanio, utiliza la vieja escena con la nueva
+                if (escenaVieja == null && nuevaEscena != null) {
+                    mvVideo.fitHeightProperty().bind(nuevaEscena.heightProperty().subtract(hboxControls.heightProperty().add(20)));//cambia el tamanio del scene
+                    //le quitamos el div de los controles para que nuevaEscena no se ponga encima de los controles que hemos puesto
+                }
+            }
+        });
+
+        labelFullScreen.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent mouseEvent) {
+                Label label = (Label) mouseEvent.getSource();
+                Stage stage = (Stage) label.getScene().getWindow();
+                if (stage.isFullScreen()) {
+                    stage.setFullScreen(false);
+                    labelFullScreen.setGraphic(ivFullScreen);
+                } else {
+                    stage.setFullScreen(true);
+                    labelFullScreen.setGraphic(ivExit);
+                }
+                stage.addEventHandler(KeyEvent.KEY_PRESSED, new EventHandler<KeyEvent>() {
+                    @Override
+                    public void handle(KeyEvent keyEvent) {
+                        if (keyEvent.getCode() == KeyCode.ESCAPE) {
+                            labelFullScreen.setGraphic(ivFullScreen);
+                        }
+                    }
+                });
+            }
+        });
+
+        mpVideo.totalDurationProperty().addListener(new ChangeListener<Duration>() {
+            @Override
+            public void changed(ObservableValue<? extends Duration> observableValue, Duration viejaDuracion, Duration nuevaDuracion) {
+                sliderTime.setMax(nuevaDuracion.toSeconds());
+                labelTotalTime.setText(obtenerTiempo(nuevaDuracion));
+            }
+        });
+
+        sliderTime.valueChangingProperty().addListener(new ChangeListener<Boolean>() {
+            @Override
+            public void changed(ObservableValue<? extends Boolean> observableValue, Boolean cambiaba, Boolean estaCambiando) {
+                if (!estaCambiando) {
+                    mpVideo.seek(Duration.seconds(sliderTime.getValue()));
+                }
+            }
+        });
+
+        sliderTime.valueProperty().addListener(new ChangeListener<Number>() {
+            @Override
+            public void changed(ObservableValue<? extends Number> observableValue, Number viejoNum, Number nuevoNum) {
+                double tiempoActual = mpVideo.getCurrentTime().toSeconds();
+                if (Math.abs(tiempoActual - nuevoNum.doubleValue()) > 0.5) {
+                    mpVideo.seek(Duration.seconds(nuevoNum.doubleValue()));
+                }
+                labelEsFinalVideo(labelCurrentTime.getText(), labelTotalTime.getText());
+            }
+        });
+
+        mpVideo.currentTimeProperty().addListener(new ChangeListener<Duration>() {
+            @Override
+            public void changed(ObservableValue<? extends Duration> observableValue, Duration viejaDuracion, Duration nuevaDuracion) {
+                if (sliderTime.isValueChanging()) {
+                    sliderTime.setValue(nuevaDuracion.toSeconds());
+                }
+                labelEsFinalVideo(labelCurrentTime.getText(), labelTotalTime.getText());
+            }
+        });
+
+        mpVideo.setOnEndOfMedia(new Runnable() {
+            @Override
+            public void run() {
+                buttonPPR.setGraphic(ivRestart);
+                atEndOfVideo = true;
+                if(!labelCurrentTime.textProperty().equals(labelTotalTime.textProperty())){
+                    labelCurrentTime.textProperty().unbind();
+                    labelCurrentTime.setText(obtenerTiempo(mpVideo.getTotalDuration()) + " / ");
+                }
+            }
+        });
     }
 
 
@@ -296,19 +317,19 @@ public class ControllerReproductor implements Initializable {
                     segundos);
         }
     }
-    
-    public void labelEsFinalVideo(String labelTiempo, String labelTiempoTotal){
+
+    public void labelEsFinalVideo(String labelTiempo, String labelTiempoTotal) {
         for (int i = 0; i < labelTiempoTotal.length(); i++) {
-            if(labelTiempo.charAt(i) != labelTiempoTotal.charAt(i)){
+            if (labelTiempo.charAt(i) != labelTiempoTotal.charAt(i)) {
                 atEndOfVideo = false;
-                if(isPlaying){
+                if (isPlaying) {
                     buttonPPR.setGraphic(ivPause);
-                }else{
+                } else {
                     buttonPPR.setGraphic(ivPlay);
                     break;
                 }
-            }else{
-                atEndOfVideo=true;
+            } else {
+                atEndOfVideo = true;
                 buttonPPR.setGraphic(ivRestart);
             }
         }
