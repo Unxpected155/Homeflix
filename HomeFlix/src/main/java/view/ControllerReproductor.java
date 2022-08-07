@@ -35,27 +35,27 @@ public class ControllerReproductor implements Initializable {
     @FXML
     private VBox vBoxParent;
 
-    private  MediaPlayer mpVideo;
+    private MediaPlayer mpVideo;
 
-    private  Media mediaVideo;
+    private Media mediaVideo;
 
     @FXML
     private HBox hboxControls;
 
     @FXML
-    private  HBox hboxVolume;
+    private HBox hboxVolume;
 
     @FXML
     private Button buttonPPR;
 
     @FXML
-    private  Label labelCurrentTime;
+    private Label labelCurrentTime;
 
     @FXML
     private Label labelTotalTime;
 
     @FXML
-    private  Label labelSpeed;
+    private Label labelSpeed;
 
     @FXML
     private Label labelVolume;
@@ -68,23 +68,23 @@ public class ControllerReproductor implements Initializable {
 
     private boolean atEndOfVideo = false;
 
-    private  boolean isPlaying = true;
+    private boolean isPlaying = true;
 
     private boolean isMuted = true;
 
-    private  ImageView ivPlay;
+    private ImageView ivPlay;
 
-    private  ImageView ivPause;
+    private ImageView ivPause;
 
-    private  ImageView ivRestart;
+    private ImageView ivRestart;
 
-    private  ImageView ivVolume;
+    private ImageView ivVolume;
 
-    private  ImageView ivFullScreen;
+    private ImageView ivFullScreen;
 
-    private  ImageView ivMute;
+    private ImageView ivMute;
 
-    private  ImageView ivExit;
+    private ImageView ivExit;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -93,7 +93,7 @@ public class ControllerReproductor implements Initializable {
         mpVideo = new MediaPlayer(mediaVideo);
         mvVideo.setMediaPlayer(mpVideo);
 
-        final  int ivTamano = 25;
+        final int ivTamano = 25;
 
         Image imagePlay = new Image(new File("").toURI().toString());
         ivPlay = new ImageView(imagePlay);
@@ -139,29 +139,43 @@ public class ControllerReproductor implements Initializable {
 
     }
 
-//    public void bindCurrentTimeLabel(){
-//
-//        labelCurrentTime.textProperty().bind(Bindings.createStringBinding(new Callable<String>() {
-//            @Override
-//            public String call() throws Exception {
-//                return getTime(mpVideo.getCurrentTime() + " / ");
-//            }
-//        }, mpVideo.currentTimeProperty()));
-//
-//    }
+    public void tiempoActualVideo() {
 
-//    public String getTime(Duration time){
-//
-//        int hours = (int) time.toHours();
-//        int minutes = (int) time.toMinutes();
-//        int seconds = (int) time.toSeconds();
-//
-//        if (seconds > 59) {
-//
-//            minutes = seconds % 60;
-//        }
-//
-//
-//
-//    }
+        labelCurrentTime.textProperty().bind(Bindings.createStringBinding(new Callable<String>() {
+            @Override
+            public String call() throws Exception {
+                return obtenerTiempo(mpVideo.getCurrentTime()) + " / ";
+            }
+        }, mpVideo.currentTimeProperty()));
+
+    }
+
+    public String obtenerTiempo(Duration tiempo) {
+
+        int horas = (int) tiempo.toHours();
+        int minutos = (int) tiempo.toMinutes();
+        int segundos = (int) tiempo.toSeconds();
+
+        if (segundos > 59) {
+            segundos = segundos % 60;
+        }
+        if (minutos > 59) {
+            minutos = minutos % 60;
+        }
+        if (horas > 59) {
+            horas = horas % 60;
+        }
+
+        if (horas > 0) {
+            return String.format("%d:02d:%02d",
+                    horas,
+                    minutos,
+                    segundos);
+        }else{
+            return String.format("%02d:%02d",
+                    minutos,
+                    segundos);
+        }
+
+    }
 }
