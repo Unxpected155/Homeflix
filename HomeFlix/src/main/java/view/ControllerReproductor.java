@@ -103,37 +103,37 @@ public class ControllerReproductor implements Initializable {
 
         final int ivTamano = 25;
 
-        Image imagePlay = new Image(new File("").toURI().toString());
+        Image imagePlay = new Image(new File("src/main/resources/view/botonPlay.jpg").toURI().toString());
         ivPlay = new ImageView(imagePlay);
         ivPlay.setFitHeight(ivTamano);
         ivPlay.setFitWidth(ivTamano);
 
-        Image imageStop = new Image(new File("").toURI().toString());
+        Image imageStop = new Image(new File("src/main/resources/view/pausaReproductor.jpg").toURI().toString());
         ivPause = new ImageView(imagePlay);
         ivPause.setFitHeight(ivTamano);
         ivPause.setFitWidth(ivTamano);
 
-        Image imageRestart = new Image(new File("").toURI().toString());
+        Image imageRestart = new Image(new File("src/main/resources/view/Restart.jpg").toURI().toString());
         ivRestart = new ImageView(imagePlay);
         ivRestart.setFitHeight(ivTamano);
         ivRestart.setFitWidth(ivTamano);
 
-        Image imageVol = new Image(new File("").toURI().toString());
+        Image imageVol = new Image(new File("src/main/resources/view/VolumenReproductor.png").toURI().toString());
         ivVolume = new ImageView(imagePlay);
         ivVolume.setFitHeight(ivTamano);
         ivVolume.setFitWidth(ivTamano);
 
-        Image imageFull = new Image(new File("").toURI().toString());
+        Image imageFull = new Image(new File("src/main/resources/view/FullScreen.png").toURI().toString());
         ivFullScreen = new ImageView(imagePlay);
         ivFullScreen.setFitHeight(ivTamano);
         ivFullScreen.setFitWidth(ivTamano);
 
-        Image imageMute = new Image(new File("").toURI().toString());
+        Image imageMute = new Image(new File("src/main/resources/view/muted.jpg").toURI().toString());
         ivMute = new ImageView(imagePlay);
         ivMute.setFitHeight(ivTamano);
         ivMute.setFitWidth(ivTamano);
 
-        Image imageExit = new Image(new File("").toURI().toString());
+        Image imageExit = new Image(new File("src/main/resources/view/exitFullScreen.jpg").toURI().toString());
         ivExit = new ImageView(imagePlay);
         ivExit.setFitHeight(ivTamano);
         ivExit.setFitWidth(ivTamano);
