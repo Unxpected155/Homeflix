@@ -11,8 +11,11 @@ import javafx.scene.chart.ValueAxis;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.Slider;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.scene.media.MediaView;
@@ -25,140 +28,140 @@ import java.util.ResourceBundle;
 import java.util.concurrent.Callable;
 
 public class ControllerReproductor implements Initializable {
-    @FXML
-    private Button pauseButton;
-
-    private ImageView ivFullsScreen;
-
-    private ImageView ivExit;
 
     @FXML
-    private Button playButton;
+    private MediaView mvVideo;
 
     @FXML
-    private Button resetButton;
+    private VBox vBoxParent;
+
+    private  MediaPlayer mpVideo;
+
+    private  Media mediaVideo;
 
     @FXML
-    private MediaView mediaView;
+    private HBox hboxControls;
 
     @FXML
-    private Slider progressBar;
+    private  HBox hboxVolume;
 
     @FXML
-    private Button botonFullScreen;
-    @FXML
-    private Label tiempoActualVideo;
+    private Button buttonPPR;
 
     @FXML
-    private Label tiempoTotalVideo;
-    @FXML
-    private ImageView volumenLabel;
+    private  Label labelCurrentTime;
 
     @FXML
-    private Slider volumenSlider;
-    private ImageView imgVolumen;
+    private Label labelTotalTime;
 
-    private boolean alFinalVideo = false;
+    @FXML
+    private  Label labelSpeed;
 
-    private File file;
-    private Media media;
-    private MediaPlayer mediaPlayer;
+    @FXML
+    private Label labelVolume;
 
+    @FXML
+    private Slider sliderVolume;
+
+    @FXML
+    private Slider sliderTime;
+
+    private boolean atEndOfVideo = false;
+
+    private  boolean isPlaying = true;
+
+    private boolean isMuted = true;
+
+    private  ImageView ivPlay;
+
+    private  ImageView ivPause;
+
+    private  ImageView ivRestart;
+
+    private  ImageView ivVolume;
+
+    private  ImageView ivFullScreen;
+
+    private  ImageView ivMute;
+
+    private  ImageView ivExit;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
-        file = new File("C:\\Users\\Gabri\\OneDrive\\Escritorio\\Video.mp4");
-        media = new Media(file.toURI().toString());
-        mediaPlayer = new MediaPlayer(media);
-        mediaView.setMediaPlayer(mediaPlayer);
+        mediaVideo = new Media(new File("D:\\Fotos & videos\\Jre-legacy\\Chang_gritando.mp4").toURI().toString());
+        mpVideo = new MediaPlayer(mediaVideo);
+        mvVideo.setMediaPlayer(mpVideo);
 
-        mediaPlayer.currentTimeProperty().addListener(new ChangeListener<Duration>() {
-            @Override
-            public void changed(ObservableValue<? extends Duration> observableValue, Duration oldValue, Duration newValue) {
+        final  int ivTamano = 25;
 
-                progressBar.setValue(newValue.toSeconds());
-            }
-        });
+        Image imagePlay = new Image(new File("").toURI().toString());
+        ivPlay = new ImageView(imagePlay);
+        ivPlay.setFitHeight(ivTamano);
+        ivPlay.setFitWidth(ivTamano);
 
-        progressBar.setOnMousePressed(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent mouseEvent) {
+        Image imageStop = new Image(new File("").toURI().toString());
+        ivPause = new ImageView(imagePlay);
+        ivPause.setFitHeight(ivTamano);
+        ivPause.setFitWidth(ivTamano);
 
-                mediaPlayer.seek(Duration.seconds(progressBar.getValue()));
-            }
-        });
+        Image imageRestart = new Image(new File("").toURI().toString());
+        ivRestart = new ImageView(imagePlay);
+        ivRestart.setFitHeight(ivTamano);
+        ivRestart.setFitWidth(ivTamano);
 
-        progressBar.setOnMouseDragged(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent mouseEvent) {
+        Image imageVol = new Image(new File("").toURI().toString());
+        ivVolume = new ImageView(imagePlay);
+        ivVolume.setFitHeight(ivTamano);
+        ivVolume.setFitWidth(ivTamano);
 
-                mediaPlayer.seek(Duration.seconds(progressBar.getValue()));
-            }
-        });
+        Image imageFull = new Image(new File("").toURI().toString());
+        ivFullScreen = new ImageView(imagePlay);
+        ivFullScreen.setFitHeight(ivTamano);
+        ivFullScreen.setFitWidth(ivTamano);
 
-        mediaPlayer.volumeProperty().bindBidirectional(volumenSlider.valueProperty());
+        Image imageMute = new Image(new File("").toURI().toString());
+        ivMute = new ImageView(imagePlay);
+        ivMute.setFitHeight(ivTamano);
+        ivMute.setFitWidth(ivTamano);
 
-        tiempoActualVideo();
-    }
+        Image imageExit = new Image(new File("").toURI().toString());
+        ivExit = new ImageView(imagePlay);
+        ivExit.setFitHeight(ivTamano);
+        ivExit.setFitWidth(ivTamano);
 
-    public void tiempoActualVideo() {
-        tiempoActualVideo.textProperty().bind(Bindings.createStringBinding(new Callable<String>() {
-            @Override
-            public String call() throws Exception {
-                return obtenerTiempo(mediaPlayer.getCurrentTime()) + " / ";
-            }
-        }, mediaPlayer.currentTimeProperty()));
-    }
-    public String obtenerTiempo(Duration tiempo) {
-        int horas = (int) tiempo.toHours();
-        int minutos = (int) tiempo.toMinutes();
-        int segundos = (int) tiempo.toSeconds();
+        buttonPPR.setGraphic(ivPause);
+        labelVolume.setGraphic(ivMute);
+        labelSpeed.setText("1X");
 
-        if (segundos > 59)
-            segundos = segundos % 60;//si los segundos son 62, en el tiempo actual muestra el residuo(02 segundos)
-        if (minutos > 59)
-            minutos = minutos % 60;//si los mintuos son 62, en el tiempo actual muestra el residuo(02 minutos)
-        if (horas > 59) horas = horas % 60;//si los horas son 62, en el tiempo actual muestra el residuo(02 horas)
-
-        if (horas > 0) return String.format("%d:%02d:%02d",
-                horas,
-                minutos,
-                segundos);
-        else return String.format("%02d:%02d:%02d",
-                horas,
-                minutos,
-                segundos);
-    }
-
-
-    public void playVideo() {
-        mediaPlayer.play();
-    }
-
-    public void pauseVideo() {
-        mediaPlayer.pause();
-    }
-
-    public void resetVideo() {
-        mediaPlayer.seek(Duration.seconds(0.0));
-    }
-
-    public void fullScreen(){
-
-        Stage stage = (Stage) botonFullScreen.getScene().getWindow();
-
-        if (stage.isFullScreen()) {
-
-            stage.setFullScreen(false);
-            botonFullScreen.setGraphic(ivFullsScreen);
-
-        }else {
-
-            stage.setFullScreen(true);
-            botonFullScreen.setGraphic(ivExit);
-
-        }
+        hboxVolume.getChildren().remove(sliderVolume);
+        mpVideo.volumeProperty().bindBidirectional(sliderVolume.valueProperty());
 
     }
+
+//    public void bindCurrentTimeLabel(){
+//
+//        labelCurrentTime.textProperty().bind(Bindings.createStringBinding(new Callable<String>() {
+//            @Override
+//            public String call() throws Exception {
+//                return getTime(mpVideo.getCurrentTime() + " / ");
+//            }
+//        }, mpVideo.currentTimeProperty()));
+//
+//    }
+
+//    public String getTime(Duration time){
+//
+//        int hours = (int) time.toHours();
+//        int minutes = (int) time.toMinutes();
+//        int seconds = (int) time.toSeconds();
+//
+//        if (seconds > 59) {
+//
+//            minutes = seconds % 60;
+//        }
+//
+//
+//
+//    }
 }
