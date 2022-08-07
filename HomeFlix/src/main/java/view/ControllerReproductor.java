@@ -94,57 +94,66 @@ public class ControllerReproductor implements Initializable {
 
     private ImageView ivExit;
 
+    private static String path;
+
+    public static void setPath(String path) {
+        ControllerReproductor.path = path;
+    }
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
-        mediaVideo = new Media(new File("C:\\Users\\Gabri\\OneDrive\\Escritorio\\Video.mp4").toURI().toString());
+        mediaVideo = new Media(new File(path).toURI().toString());
         mpVideo = new MediaPlayer(mediaVideo);
         mvVideo.setMediaPlayer(mpVideo);
 
+
         final int ivTamano = 25;
 
-        Image imagePlay = new Image(new File("src/main/resources/view/botonPlay.jpg").toURI().toString());
+        Image imagePlay = new Image(new File("src/main/resources/view/play.png").toURI().toString());
         ivPlay = new ImageView(imagePlay);
         ivPlay.setFitHeight(ivTamano);
         ivPlay.setFitWidth(ivTamano);
 
-        Image imageStop = new Image(new File("src/main/resources/view/pausaReproductor.jpg").toURI().toString());
-        ivPause = new ImageView(imagePlay);
+        Image imageStop = new Image(new File("src/main/resources/view/pause.jpg").toURI().toString());
+        ivPause = new ImageView(imageStop);
         ivPause.setFitHeight(ivTamano);
         ivPause.setFitWidth(ivTamano);
 
-        Image imageRestart = new Image(new File("src/main/resources/view/Restart.jpg").toURI().toString());
-        ivRestart = new ImageView(imagePlay);
+        Image imageRestart = new Image(new File("src/main/resources/view/restart.png").toURI().toString());
+        ivRestart = new ImageView(imageRestart);
         ivRestart.setFitHeight(ivTamano);
         ivRestart.setFitWidth(ivTamano);
 
-        Image imageVol = new Image(new File("src/main/resources/view/VolumenReproductor.png").toURI().toString());
-        ivVolume = new ImageView(imagePlay);
+        Image imageVol = new Image(new File("src/main/resources/view/volumen.png").toURI().toString());
+        ivVolume = new ImageView(imageVol);
         ivVolume.setFitHeight(ivTamano);
         ivVolume.setFitWidth(ivTamano);
 
         Image imageFull = new Image(new File("src/main/resources/view/FullScreen.png").toURI().toString());
-        ivFullScreen = new ImageView(imagePlay);
+        ivFullScreen = new ImageView(imageFull);
         ivFullScreen.setFitHeight(ivTamano);
         ivFullScreen.setFitWidth(ivTamano);
 
-        Image imageMute = new Image(new File("src/main/resources/view/muted.jpg").toURI().toString());
-        ivMute = new ImageView(imagePlay);
+        Image imageMute = new Image(new File("src/main/resources/view/volumeMuted.jpg").toURI().toString());
+        ivMute = new ImageView(imageMute);
         ivMute.setFitHeight(ivTamano);
         ivMute.setFitWidth(ivTamano);
 
-        Image imageExit = new Image(new File("src/main/resources/view/exitFullScreen.jpg").toURI().toString());
-        ivExit = new ImageView(imagePlay);
+        Image imageExit = new Image(new File("src/main/resources/view/exitfs.png").toURI().toString());
+        ivExit = new ImageView(imageExit);
         ivExit.setFitHeight(ivTamano);
         ivExit.setFitWidth(ivTamano);
 
         buttonPPR.setGraphic(ivPause);
         labelVolume.setGraphic(ivMute);
         labelSpeed.setText("1X");
+        labelFullScreen.setGraphic(ivFullScreen);
 
         buttonPPR.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent actionEvent) {
+                tiempoActualVideo();
                 Button buttonPlay = (Button) actionEvent.getSource();
                 if (atEndOfVideo) {
                     sliderTime.setValue(0);//para el video
@@ -173,8 +182,24 @@ public class ControllerReproductor implements Initializable {
             public void invalidated(Observable observable) {
                 mpVideo.setVolume(sliderVolume.getValue());
                 if (mpVideo.getVolume() != 0.0) {//si el volumen es distinto a 0 la imagen del volumen cambia a muteado
+                    labelVolume.setGraphic(ivVolume);
+                    isMuted = false;
+                } else {
                     labelVolume.setGraphic(ivMute);
                     isMuted = true;
+                }
+            }
+        });
+
+        labelSpeed.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent mouseEvent) {
+                if(labelSpeed.getText().equalsIgnoreCase("1X")) {
+                    labelSpeed.setText("2X");
+                    mpVideo.setRate(2.0);
+                } else {
+                    labelSpeed.setText("1X");
+                    mpVideo.setRate(1.0);
                 }
             }
         });
@@ -191,6 +216,23 @@ public class ControllerReproductor implements Initializable {
                     sliderVolume.setValue(0);
                     isMuted = true;
                 }
+            }
+        });
+
+        labelVolume.setOnMouseEntered(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent mouseEvent) {
+                if (hboxVolume.lookup("#sliderVolume") == null) {
+                    hboxVolume.getChildren().add(sliderVolume);
+                    sliderVolume.setValue(mpVideo.getVolume());
+                }
+            }
+        });
+
+        hboxVolume.setOnMouseExited(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent mouseEvent) {
+                hboxVolume.getChildren().remove(sliderVolume);
             }
         });
 
@@ -230,6 +272,7 @@ public class ControllerReproductor implements Initializable {
         mpVideo.totalDurationProperty().addListener(new ChangeListener<Duration>() {
             @Override
             public void changed(ObservableValue<? extends Duration> observableValue, Duration viejaDuracion, Duration nuevaDuracion) {
+                tiempoActualVideo();
                 sliderTime.setMax(nuevaDuracion.toSeconds());
                 labelTotalTime.setText(obtenerTiempo(nuevaDuracion));
             }
@@ -238,6 +281,7 @@ public class ControllerReproductor implements Initializable {
         sliderTime.valueChangingProperty().addListener(new ChangeListener<Boolean>() {
             @Override
             public void changed(ObservableValue<? extends Boolean> observableValue, Boolean cambiaba, Boolean estaCambiando) {
+                tiempoActualVideo();
                 if (!estaCambiando) {
                     mpVideo.seek(Duration.seconds(sliderTime.getValue()));
                 }
@@ -247,6 +291,7 @@ public class ControllerReproductor implements Initializable {
         sliderTime.valueProperty().addListener(new ChangeListener<Number>() {
             @Override
             public void changed(ObservableValue<? extends Number> observableValue, Number viejoNum, Number nuevoNum) {
+                tiempoActualVideo();
                 double tiempoActual = mpVideo.getCurrentTime().toSeconds();
                 if (Math.abs(tiempoActual - nuevoNum.doubleValue()) > 0.5) {
                     mpVideo.seek(Duration.seconds(nuevoNum.doubleValue()));
@@ -258,6 +303,7 @@ public class ControllerReproductor implements Initializable {
         mpVideo.currentTimeProperty().addListener(new ChangeListener<Duration>() {
             @Override
             public void changed(ObservableValue<? extends Duration> observableValue, Duration viejaDuracion, Duration nuevaDuracion) {
+                tiempoActualVideo();
                 if (sliderTime.isValueChanging()) {
                     sliderTime.setValue(nuevaDuracion.toSeconds());
                 }
@@ -307,7 +353,7 @@ public class ControllerReproductor implements Initializable {
         }
 
         if (horas > 0) {
-            return String.format("%d:02d:%02d",
+            return String.format("%d:%02d:%02d",
                     horas,
                     minutos,
                     segundos);
