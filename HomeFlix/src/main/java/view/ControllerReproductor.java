@@ -1,5 +1,7 @@
 package view;
 
+import javafx.beans.InvalidationListener;
+import javafx.beans.Observable;
 import javafx.beans.binding.Bindings;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -159,7 +161,33 @@ public class ControllerReproductor implements Initializable {
         hboxVolume.getChildren().remove(sliderVolume);
         mpVideo.volumeProperty().bindBidirectional(sliderVolume.valueProperty());
 
+        tiempoActualVideo();
 
+    sliderVolume.valueProperty().addListener(new InvalidationListener() {
+        @Override
+        public void invalidated(Observable observable) {
+            mpVideo.setVolume(sliderVolume.getValue());
+            if(mpVideo.getVolume() != 0.0){//si el volumen es distinto a 0 la imagen del volumen cambia a muteado
+                labelVolume.setGraphic(ivMute);
+                isMuted = true;
+            }
+        }
+    });
+
+    labelVolume.setOnMouseClicked(new EventHandler<MouseEvent>() {//modifica la imagen del volumen y el nivel del volumen
+        @Override
+        public void handle(MouseEvent mouseEvent) {
+            if(isMuted){//cuando modifique el volumen si el volumen esta en 0.0 cambiara a no muteado
+                labelVolume.setGraphic(ivVolume);
+                sliderVolume.setValue(0.2);
+                isMuted = false;
+            }else{//cuando modifique el volumen si esta en 0.0 cambiara a muteado
+                labelVolume.setGraphic(ivMute);
+                sliderVolume.setValue(0);
+                isMuted = true;
+            }
+        }
+    });
 
     }
 
