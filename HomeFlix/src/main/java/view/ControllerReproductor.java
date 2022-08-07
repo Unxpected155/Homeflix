@@ -227,6 +227,34 @@ public class ControllerReproductor implements Initializable {
         }
     });
 
+    mpVideo.totalDurationProperty().addListener(new ChangeListener<Duration>() {
+        @Override
+        public void changed(ObservableValue<? extends Duration> observableValue, Duration viejaDuracion, Duration nuevaDuracion) {
+            sliderTime.setMax(nuevaDuracion.toSeconds());
+            labelTotalTime.setText(obtenerTiempo(nuevaDuracion));
+        }
+    });
+
+    sliderTime.valueChangingProperty().addListener(new ChangeListener<Boolean>() {
+        @Override
+        public void changed(ObservableValue<? extends Boolean> observableValue, Boolean cambiaba, Boolean estaCambiando) {
+            if(!estaCambiando){
+                mpVideo.seek(Duration.seconds(sliderTime.getValue()));
+            }
+        }
+    });
+
+    sliderTime.valueProperty().addListener(new ChangeListener<Number>() {
+        @Override
+        public void changed(ObservableValue<? extends Number> observableValue, Number viejoNum, Number nuevoNum) {
+           double tiempoActual = mpVideo.getCurrentTime().toSeconds();
+           if(Math.abs(tiempoActual - nuevoNum.doubleValue()) > 0.5){
+               mpVideo.seek(Duration.seconds(nuevoNum.doubleValue()));
+           }
+           labelEsFinalVideo(labelCurrentTime.getText(), labelTotalTime.getText());
+        }
+    });
+
     }
 
 
@@ -267,6 +295,22 @@ public class ControllerReproductor implements Initializable {
                     minutos,
                     segundos);
         }
-
+    }
+    
+    public void labelEsFinalVideo(String labelTiempo, String labelTiempoTotal){
+        for (int i = 0; i < labelTiempoTotal.length(); i++) {
+            if(labelTiempo.charAt(i) != labelTiempoTotal.charAt(i)){
+                atEndOfVideo = false;
+                if(isPlaying){
+                    buttonPPR.setGraphic(ivPause);
+                }else{
+                    buttonPPR.setGraphic(ivPlay);
+                    break;
+                }
+            }else{
+                atEndOfVideo=true;
+                buttonPPR.setGraphic(ivRestart);
+            }
+        }
     }
 }
