@@ -57,6 +57,29 @@ public class ControllerBusqueda implements Initializable{
         stage.show();
     }
 
+    public void buscarVideo(){
+        DAOVideo daoVideo = new DAOVideoImpl();
+        videosList = FXCollections.observableArrayList();
+        ArrayList<Video> videosSeleccionados = null;
+        String nombre = nombreVideoTF.getText();
+        String categoria = categoriaTF.getText();
+        try {
+            videosSeleccionados = daoVideo.listarVideoNC(nombre,categoria);
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+        videosList.setAll(videosSeleccionados);
+        this.nombreCO.setCellValueFactory(new PropertyValueFactory<>("name"));
+        this.categoriaCO.setCellValueFactory(new PropertyValueFactory<>("category"));
+        this.duracionCO.setCellValueFactory(new PropertyValueFactory<>("duracion"));
+        this.locaizacionCO.setCellValueFactory(new PropertyValueFactory<>("localizacion"));
+        tblVideos.setItems(videosList);
+        if(videosList.isEmpty()){
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setContentText("No hay ningun video que coincida con la informacion ingresada. Intente de nuevo");
+            alert.show();
+        }
+    }
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         DAOVideo daoVideo = new DAOVideoImpl();
