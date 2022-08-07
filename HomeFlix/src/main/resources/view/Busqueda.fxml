@@ -2,6 +2,8 @@
 
 <?import javafx.scene.control.Accordion?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -9,7 +11,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #FF8C00;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.ControllerBusqueda">
+<AnchorPane prefHeight="693.0" prefWidth="620.0" style="-fx-background-color: #FF8C00;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.ControllerBusqueda">
    <children>
       <ImageView fitHeight="135.0" fitWidth="171.0" layoutX="226.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
          <image>
@@ -21,21 +23,29 @@
             <Font name="Sitka Small" size="18.0" />
          </font>
       </Text>
-      <Text layoutX="81.0" layoutY="235.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nombre del video">
+      <Text layoutX="86.0" layoutY="212.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nombre del video">
          <font>
             <Font size="15.0" />
          </font>
       </Text>
-      <Text layoutX="411.0" layoutY="242.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Categoría">
+      <Text layoutX="416.0" layoutY="219.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Categoría">
          <font>
             <Font size="15.0" />
          </font>
       </Text>
-      <TextField fx:id="nombreVideo" layoutX="63.0" layoutY="257.0" prefHeight="25.0" prefWidth="167.0" style="-fx-background-color: #FFF6E8;" />
+      <TextField fx:id="nombreVideoTF" layoutX="68.0" layoutY="234.0" prefHeight="25.0" prefWidth="167.0" style="-fx-background-color: #FFF6E8;" />
       <Accordion layoutX="424.0" layoutY="247.0" />
       <Accordion layoutX="366.0" layoutY="228.0" />
-      <TextField fx:id="categoria" layoutX="378.0" layoutY="258.0" style="-fx-background-color: #FFF6E8;" />
-      <Button layoutX="259.0" layoutY="339.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="96.0" style="-fx-background-color: #B1896A; -fx-border-radius: 5px; -fx-background-radius: 10px; -fx-border-color: #000000;" text="Buscar video" textFill="WHITE" />
+      <TextField fx:id="categoriaTF" layoutX="383.0" layoutY="235.0" style="-fx-background-color: #FFF6E8;" />
       <Button layoutX="15.0" layoutY="14.0" mnemonicParsing="false" onAction="#volverPrincipal" prefHeight="27.0" prefWidth="56.0" style="-fx-background-color: #B1896A; -fx-border-radius: 5px; -fx-background-radius: 10px; -fx-border-color: #000000;" text="Volver" textFill="WHITE" />
+      <TableView fx:id="tblVideos" layoutX="55.0" layoutY="312.0" prefHeight="366.0" prefWidth="511.0">
+        <columns>
+          <TableColumn fx:id="nombreCO" prefWidth="149.0" text="Nombre del Video" />
+          <TableColumn fx:id="categoriaCO" prefWidth="136.0" text="Categoria" />
+            <TableColumn fx:id="locaizacionCO" prefWidth="118.0" text="Localizacion" />
+            <TableColumn fx:id="duracionCO" prefWidth="107.0" text="Duracion" />
+        </columns>
+      </TableView>
+      <Button layoutX="272.0" layoutY="275.0" mnemonicParsing="false" onAction="#buscarVideo" prefHeight="27.0" prefWidth="56.0" style="-fx-background-color: #B1896A; -fx-border-radius: 5px; -fx-background-radius: 10px; -fx-border-color: #000000;" text="Buscar" textFill="WHITE" />
    </children>
 </AnchorPane>
