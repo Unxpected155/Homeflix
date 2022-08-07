@@ -40,7 +40,7 @@
                   <Slider fx:id="sliderVolume" max="1.0" style="-fx-cursor: hand;" />
                </children>
             </HBox>
-            <Label fx:id="labelCurrentTime">
+            <Label fx:id="labelCurrentTime" prefHeight="27.0" prefWidth="7.0">
                <font>
                   <Font name="System Bold" size="18.0" />
                </font>

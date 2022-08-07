@@ -16,6 +16,8 @@ import javafx.scene.control.Label;
 import javafx.scene.control.Slider;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
@@ -62,6 +64,9 @@ public class ControllerReproductor implements Initializable {
 
     @FXML
     private Label labelVolume;
+
+    @FXML
+    private Label labelFullScreen;
 
     @FXML
     private Slider sliderVolume;
@@ -196,6 +201,29 @@ public class ControllerReproductor implements Initializable {
             mvVideo.fitHeightProperty().bind(nuevaEscena.heightProperty().subtract(hboxControls.heightProperty().add(20)));//cambia el tamanio del scene
             //le quitamos el div de los controles para que nuevaEscena no se ponga encima de los controles que hemos puesto
         }
+        }
+    });
+
+    labelFullScreen.setOnMouseClicked(new EventHandler<MouseEvent>() {
+        @Override
+        public void handle(MouseEvent mouseEvent) {
+            Label label = (Label) mouseEvent.getSource();
+            Stage stage = (Stage) label.getScene().getWindow();
+            if (stage.isFullScreen()){
+                stage.setFullScreen(false);
+                labelFullScreen.setGraphic(ivFullScreen);
+            }else{
+                stage.setFullScreen(true);
+                labelFullScreen.setGraphic(ivExit);
+            }
+            stage.addEventHandler(KeyEvent.KEY_PRESSED, new EventHandler<KeyEvent>() {
+                @Override
+                public void handle(KeyEvent keyEvent) {
+                    if(keyEvent.getCode() == KeyCode.ESCAPE){
+                        labelFullScreen.setGraphic(ivFullScreen);
+                    }
+                }
+            });
         }
     });
 
