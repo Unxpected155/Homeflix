@@ -11,7 +11,7 @@
 
 <VBox fx:id="vBoxParent" alignment="CENTER" prefHeight="442.0" prefWidth="582.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.ControllerReproductor">
    <children>
-      <MediaView fx:id="mvVideo" fitHeight="200.0" fitWidth="200.0" />
+      <MediaView fx:id="mvVideo" />
       <Slider fx:id="sliderTime" style="-fx-cursor: hand;">
          <padding>
             <Insets bottom="5.0" left="10.0" right="10.0" top="5.0" />
@@ -22,35 +22,31 @@
             <Insets bottom="10.0" />
          </padding>
          <children>
-            <Button fx:id="buttonPPR" mnemonicParsing="false">
-               <HBox.margin>
-                  <Insets left="15.0" />
-               </HBox.margin>
-            </Button>
             <HBox fx:id="hboxVolume">
                <HBox.margin>
                   <Insets left="5.0" />
                </HBox.margin>
                <children>
-                  <Label fx:id="labelVolume" style="-fx-cursor: hand;">
+                  <Label fx:id="labelVolume" contentDisplay="CENTER" prefHeight="34.0" prefWidth="111.0" style="-fx-cursor: hand; -fx-border-color: black;" text="Mute&amp;Unmute">
                      <padding>
                         <Insets left="10.0" right="10.0" />
                      </padding>
                   </Label>
-                  <Slider fx:id="sliderVolume" max="1.0" style="-fx-cursor: hand;" />
+                  <Button fx:id="buttonPPR" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="33.0" prefWidth="138.0" text="Play/Pause/Restart" />
+                  <Slider fx:id="sliderVolume" max="1.0" prefHeight="14.0" prefWidth="129.0" style="-fx-cursor: hand;" />
                </children>
             </HBox>
-            <Label fx:id="labelCurrentTime">
+            <Label fx:id="labelCurrentTime" prefHeight="27.0" prefWidth="51.0">
                <font>
-                  <Font name="System Bold" size="18.0" />
+                  <Font name="System Bold" size="12.0" />
                </font>
                <HBox.margin>
                   <Insets left="10.0" />
                </HBox.margin>
             </Label>
-            <Label fx:id="idLabelTotalTime">
+            <Label fx:id="labelTotalTime" prefHeight="27.0" prefWidth="58.0">
                <font>
-                  <Font name="System Bold" size="18.0" />
+                  <Font name="System Bold" size="12.0" />
                </font>
                <padding>
                   <Insets right="10.0" />
