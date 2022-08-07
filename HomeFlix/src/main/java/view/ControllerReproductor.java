@@ -3,6 +3,7 @@ package view;
 import javafx.beans.binding.Bindings;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
+import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -134,10 +135,34 @@ public class ControllerReproductor implements Initializable {
         labelVolume.setGraphic(ivMute);
         labelSpeed.setText("1X");
 
+        buttonPPR.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent actionEvent) {
+                Button buttonPlay = (Button) actionEvent.getSource();
+                if (atEndOfVideo) {
+                    sliderTime.setValue(0);//para el video
+                    atEndOfVideo = false;
+                    isPlaying = false;
+                }
+                if(isPlaying){//si esta en pausa
+                    buttonPlay.setGraphic(ivPlay);//cuando este en play cambia la foto de play
+                    mpVideo.pause();
+                    isPlaying = false;
+                }else {
+                    buttonPlay.setGraphic(ivPause);
+                    mpVideo.play();
+                    isPlaying = true;
+                }
+            }
+        });
+
         hboxVolume.getChildren().remove(sliderVolume);
         mpVideo.volumeProperty().bindBidirectional(sliderVolume.valueProperty());
 
+
+
     }
+
 
     public void tiempoActualVideo() {
 
@@ -171,7 +196,7 @@ public class ControllerReproductor implements Initializable {
                     horas,
                     minutos,
                     segundos);
-        }else{
+        } else {
             return String.format("%02d:%02d",
                     minutos,
                     segundos);
