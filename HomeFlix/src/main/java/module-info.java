@@ -15,4 +15,6 @@ module com.example.homeflix {
 
     opens view to javafx.fxml;
     exports view;
+    opens model to javafx.fxml;
+    exports model;
 }
