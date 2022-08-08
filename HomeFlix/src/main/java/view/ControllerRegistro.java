@@ -43,7 +43,12 @@ public class ControllerRegistro {
     @FXML
     private TextField confirmarContrasenaTF;
 
-
+    /**
+     * Cambia la pantalla actual por la pantalla Login
+     * @author Gabriel Porras Brenes
+     * @param event un evento representando un tipo de action
+     * @throws IOException signo de que algun tipo de excepcion ha ocurrido
+     */
     public void volverLogin(ActionEvent event) throws IOException {
         root = FXMLLoader.load(getClass().getResource("Login.fxml"));
         stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
@@ -52,6 +57,12 @@ public class ControllerRegistro {
         stage.show();
     }
 
+    /**
+     *Crea un usuario nuevo
+     * @author Gabriel Porras Brenes
+     * @param event un evento representando un tipo de action
+     * @throws Exception signo de que algun tipo de excepcion ha ocurrido
+     */
     public void botonCrear(ActionEvent event) throws Exception {
         String nombre = nombreTF.getText();
         String identificacion = identificacionTF.getText();
@@ -113,6 +124,10 @@ public class ControllerRegistro {
         }
     }
 
+    /**
+     * Abre el explorador de archivos para que el usuario pueda elegir un avatar en el perfil personal
+     * @author Gabriel Porras Brenes
+     */
     public void buscarAvatar(){
         FileChooser fileChooser = new FileChooser();
         fileChooser.setTitle("Buscar Imagen");
