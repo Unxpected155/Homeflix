@@ -124,6 +124,10 @@ public class ControllerRegistro {
         }
     }
 
+    /**
+     * Abre el explorador de archivos para que el usuario pueda elegir un avatar en el perfil personal
+     * @author Gabriel Porras Brenes
+     */
     public void buscarAvatar(){
         FileChooser fileChooser = new FileChooser();
         fileChooser.setTitle("Buscar Imagen");
