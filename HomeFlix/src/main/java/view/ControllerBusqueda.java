@@ -71,6 +71,16 @@ public class ControllerBusqueda implements Initializable{
         stage.setScene(scene);
         stage.show();
     }
+
+    /**
+     *
+     * @Author Luis Diego Obando
+     *
+     *  Funcion que se encarga de permitir al usuario seleccionar un video.
+     *
+     * @param event recibe un parametro de evento.
+     * @throws IOException signo de que algun tipo de excepcion ha ocurrido.
+     */
     public void seleccionarVideo(ActionEvent event) throws IOException {
         ObservableList<Video> videoSeleccionado;
         videoSeleccionado = tblVideos.getSelectionModel().getSelectedItems();
