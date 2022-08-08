@@ -28,6 +28,7 @@ public class ControllerLogin {
 
     /**
      * Cambia la pantalla actual hacia la pantalla de registro
+     * @author Gabriel Porras Brenes
      * @param event un evento representando un tipo de action
      * @throws IOException signo de que algun tipo de excepcion ha ocurrido
      */
@@ -41,6 +42,7 @@ public class ControllerLogin {
 
     /**
      * Se asegura con la base de datos que el usuario y la contrasena existan para ingresar a la pagina principal
+     * @author Gabriel Porras Brenes
      * @param event un evento representando un tipo de action
      * @throws IOException signo de que algun tipo de excepcion ha ocurrido
      */

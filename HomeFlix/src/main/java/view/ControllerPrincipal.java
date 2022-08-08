@@ -25,6 +25,7 @@ public class ControllerPrincipal {
 
     /**
      * Cambia la pantalla actual por la pantalla de busqueda
+     * @author Gabriel Porras Brenes
      * @param event un evento representando un tipo de action
      * @throws IOException signo de que algun tipo de excepcion ha ocurrido
      */
@@ -38,6 +39,7 @@ public class ControllerPrincipal {
 
     /**
      * funcion para volver a la pantalla de Login
+     * @author Gabriel Porras Brenes
      * @param event un evento representando un tipo de action
      * @throws IOException signo de que algun tipo de excepcion ha ocurrido
      */
@@ -51,6 +53,7 @@ public class ControllerPrincipal {
 
     /**
      * funcion que cambia la pantalla actual a la pantalla agregar video
+     * @author Gabriel Porras Brenes
      * @param event un evento representando un tipo de action
      * @throws IOException signo de que algun tipo de excepcion ha ocurrido
      */

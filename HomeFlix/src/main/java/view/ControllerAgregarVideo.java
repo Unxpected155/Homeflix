@@ -38,6 +38,7 @@ public class ControllerAgregarVideo {
 
     /**
      * Cmabia la pantalla actual a la pantalla principal
+     * @author Gabriel Porras Brenes
      * @param event un evento representando un tipo de action
      * @throws IOException signo de que algun tipo de excepcion ha ocurrido
      */
@@ -50,6 +51,7 @@ public class ControllerAgregarVideo {
     }
 
     /**
+     * @author Gabriel Porras Brenes
      * funcion que busca un documento .mp4 en el explorador de archivos y obtiene el nombre del archivo
      */
     public void buscarVideo() {
@@ -68,6 +70,7 @@ public class ControllerAgregarVideo {
     }
 
     /**
+     * @author Gabriel Porras Brenes
      *funcion que agrega un video a la base de datos
      */
     public void botonAgregar() {
