@@ -67,6 +67,9 @@ public class ControllerAgregarVideo {
         }
     }
 
+    /**
+     *funcion que agrega un video a la base de datos
+     */
     public void botonAgregar() {
         String nombre = nombreTF.getText();
         String categoria = categoriaTF.getText();
