@@ -36,6 +36,12 @@ import java.net.URL;
 import java.util.ResourceBundle;
 import java.util.concurrent.Callable;
 
+/**
+ *
+ * @Author Luis Diego Obando
+ *
+ */
+
 public class ControllerReproductor implements Initializable {
 
     @FXML
@@ -107,6 +113,14 @@ public class ControllerReproductor implements Initializable {
         ControllerReproductor.path = path;
     }
 
+    /**
+     *
+     *  Funcion Inicializar que se encarga de inicializar objetos que se inicializan en el FXML.
+     *
+     * @param url Parametro URL que recibe un objeto url.
+     * @param resourceBundle Parametro ResourceBundle que recibe un objeto ResourceBundle.
+     */
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
@@ -158,6 +172,13 @@ public class ControllerReproductor implements Initializable {
         labelFullScreen.setGraphic(ivFullScreen);
 
         buttonPPR.setOnAction(new EventHandler<ActionEvent>() {
+
+            /**
+             *
+             *  Funcion que se encarga de controlar el boton del play para otras funciones.
+             *
+             * @param actionEvent Recibe una accion dentro de la ventana del JavaFx
+             */
             @Override
             public void handle(ActionEvent actionEvent) {
                 tiempoActualVideo();
@@ -185,6 +206,13 @@ public class ControllerReproductor implements Initializable {
         tiempoActualVideo();
 
         sliderVolume.valueProperty().addListener(new InvalidationListener() {
+
+            /**
+             *  Funcion que se encarga del volumen y si el video tiene un volumen = 0 cambia la imagen a un icono de muteado.
+             *
+             * @param observable parametro que recibe un objeto Observable.
+             */
+
             @Override
             public void invalidated(Observable observable) {
                 mpVideo.setVolume(sliderVolume.getValue());
@@ -199,6 +227,13 @@ public class ControllerReproductor implements Initializable {
         });
 
         labelSpeed.setOnMouseClicked(new EventHandler<MouseEvent>() {
+
+            /**
+             *  Funcion que se encarga de acelerar el video.
+             *
+             * @param mouseEvent parametro que recibe una accion en javaFx
+             */
+
             @Override
             public void handle(MouseEvent mouseEvent) {
                 if(labelSpeed.getText().equalsIgnoreCase("1X")) {
@@ -212,6 +247,14 @@ public class ControllerReproductor implements Initializable {
         });
 
         labelVolume.setOnMouseClicked(new EventHandler<MouseEvent>() {//modifica la imagen del volumen y el nivel del volumen
+
+            /**
+             *
+             *  Funcion que se encarga de verificar si el volumen es igual  a 0 y mutea el video.
+             *
+             * @param mouseEvent recibe una accion en el javaFx.
+             */
+
             @Override
             public void handle(MouseEvent mouseEvent) {
                 if (isMuted) {//cuando modifique el volumen si el volumen esta en 0.0 cambiara a no muteado
@@ -244,6 +287,16 @@ public class ControllerReproductor implements Initializable {
         });
 
         vBoxParent.sceneProperty().addListener(new ChangeListener<Scene>() {
+
+            /**
+             *
+             *  Funcion que se encarga de cambia rel tamaño de la escena y evita que los controles se sobrepongan.
+             *
+             * @param observableValue Recibe un objeto observableValue
+             * @param escenaVieja Recibe una escena.
+             * @param nuevaEscena Recibe otra escena.
+             */
+
             @Override
             public void changed(ObservableValue<? extends Scene> observableValue, Scene escenaVieja, Scene nuevaEscena) {//esta funcion se llama cuando cambia la escena de tamanio, utiliza la vieja escena con la nueva
                 if (escenaVieja == null && nuevaEscena != null) {
@@ -254,6 +307,14 @@ public class ControllerReproductor implements Initializable {
         });
 
         labelFullScreen.setOnMouseClicked(new EventHandler<MouseEvent>() {
+
+            /**
+             *
+             *  Funcion que se encarga de que a la hora de ser clickeado el label cambie el tamaño del video.
+             *
+             * @param mouseEvent Recibe como parametro una accion en JavaFx.
+             */
+
             @Override
             public void handle(MouseEvent mouseEvent) {
                 Label label = (Label) mouseEvent.getSource();
@@ -296,6 +357,16 @@ public class ControllerReproductor implements Initializable {
         });
 
         sliderTime.valueProperty().addListener(new ChangeListener<Number>() {
+
+            /**
+             *
+             *  Funcion que se encarga de de sincornizar el slider y el tiempo del video.
+             *
+             * @param observableValue Recibe un parametro observableValue
+             * @param viejoNum  Recibe un numero.
+             * @param nuevoNum  Recibe otro numero.
+             */
+
             @Override
             public void changed(ObservableValue<? extends Number> observableValue, Number viejoNum, Number nuevoNum) {
                 tiempoActualVideo();
@@ -308,6 +379,16 @@ public class ControllerReproductor implements Initializable {
         });
 
         mpVideo.currentTimeProperty().addListener(new ChangeListener<Duration>() {
+
+
+            /**
+             *
+             *  Funcion que se encarga de comparar el tiempo con el Slider.
+             *
+             * @param observableValue  parametro de objeto Observable.
+             * @param viejaDuracion  Recibe como parametro una duracion.
+             * @param nuevaDuracion Recibe como parametro otra duracion.
+             */
             @Override
             public void changed(ObservableValue<? extends Duration> observableValue, Duration viejaDuracion, Duration nuevaDuracion) {
                 tiempoActualVideo();
@@ -331,6 +412,9 @@ public class ControllerReproductor implements Initializable {
         });
     }
 
+    /**
+     *  Funcion que se encarga de obtener el tiempo actual del video.
+     */
 
     public void tiempoActualVideo() {
 
@@ -342,6 +426,14 @@ public class ControllerReproductor implements Initializable {
         }, mpVideo.currentTimeProperty()));
 
     }
+
+    /**
+     *
+     *  Funcion que se encarga de obtener el tiempo del video.
+     *
+     * @param tiempo recibe como parametro el tiempo del video.
+     * @return retorna un tring en minutos con segundos.
+     */
 
     public String obtenerTiempo(Duration tiempo) {
 
@@ -371,6 +463,14 @@ public class ControllerReproductor implements Initializable {
         }
     }
 
+    /**
+     *
+     *  Funcion que se encarga de verificar si el video ya se terino.
+     *
+     * @param labelTiempo  recibe un label del JavaFx
+     * @param labelTiempoTotal recibe un label del JavaFx
+     */
+
     public void labelEsFinalVideo(String labelTiempo, String labelTiempoTotal) {
         for (int i = 0; i < labelTiempoTotal.length(); i++) {
             if (labelTiempo.charAt(i) != labelTiempoTotal.charAt(i)) {
@@ -388,6 +488,12 @@ public class ControllerReproductor implements Initializable {
         }
     }
 
+    /**
+     *  Funcion que se encarga de volver a la pagina principal con un boton.
+     *
+     * @param event recibe un evento en Javafx
+     * @throws IOException Recibe un parametro IOException
+     */
     public void volverBusqueda(ActionEvent event) throws IOException {
         root = FXMLLoader.load(getClass().getResource("Busqueda.fxml"));
         stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
