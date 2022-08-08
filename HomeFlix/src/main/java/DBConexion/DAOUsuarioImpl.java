@@ -76,12 +76,6 @@ public class DAOUsuarioImpl extends DBConexion implements DAOUsuario {
         }
         return listaUsuario;
     }
-
-    @Override
-    public boolean revisarContrasenia(String contrasenia, String usuario) throws Exception {
-        return false;
-    }
-
     @Override
     public boolean usuarioExiste(String usuario) throws SQLException{
 
@@ -96,5 +90,20 @@ public class DAOUsuarioImpl extends DBConexion implements DAOUsuario {
         return false;
     }
 
+    @Override
+    public boolean revisarContrasenia(String contrasenia,String usuario) throws SQLException{
 
+            this.conectar();
+            PreparedStatement prs = this.conexion.prepareStatement("SELECT contrasena FROM usuario WHERE nombreUsuario = ?");
+            prs.setString(1, usuario);
+            ResultSet resultSet = prs.executeQuery();
+            while(resultSet.next()){
+                String retrievedPassword = resultSet.getString("contrasena");
+                if (retrievedPassword.equals(contrasenia)) {
+                    return true;
+                }
+            }
+
+        return false;
+    }
 }
