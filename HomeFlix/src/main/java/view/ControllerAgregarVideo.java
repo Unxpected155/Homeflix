@@ -36,6 +36,11 @@ public class ControllerAgregarVideo {
     private Scene scene;
     private Parent root;
 
+    /**
+     * Cmabia la pantalla actual a la pantalla principal
+     * @param event un evento representando un tipo de action
+     * @throws IOException signo de que algun tipo de excepcion ha ocurrido
+     */
     public void volverPrincipal(ActionEvent event) throws IOException {
         root = FXMLLoader.load(getClass().getResource("Principal.fxml"));
         stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
@@ -44,6 +49,9 @@ public class ControllerAgregarVideo {
         stage.show();
     }
 
+    /**
+     * funcion que busca un documento .mp4 en el explorador de archivos y obtiene el nombre del archivo
+     */
     public void buscarVideo() {
         FileChooser fileChooser = new FileChooser();
         fileChooser.setTitle("Buscar Video");
@@ -59,6 +67,9 @@ public class ControllerAgregarVideo {
         }
     }
 
+    /**
+     *funcion que agrega un video a la base de datos
+     */
     public void botonAgregar() {
         String nombre = nombreTF.getText();
         String categoria = categoriaTF.getText();
