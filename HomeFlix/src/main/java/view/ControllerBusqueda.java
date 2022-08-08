@@ -93,7 +93,6 @@ public class ControllerBusqueda implements Initializable{
         stage.setScene(scene);
         stage.show();
     }
-
     public void buscarVideo(){
         DAOVideo daoVideo = new DAOVideoImpl();
         videosList = FXCollections.observableArrayList();
@@ -117,6 +116,15 @@ public class ControllerBusqueda implements Initializable{
             alert.show();
         }
     }
+
+    /**
+     *
+     *
+     *
+     *
+     * @param url
+     * @param resourceBundle
+     */
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         DAOVideo daoVideo = new DAOVideoImpl();
