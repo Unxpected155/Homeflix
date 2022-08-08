@@ -1,11 +1,14 @@
 package DBConexion;
 
 import Interfaces.DAOUsuario;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
+import javafx.stage.Stage;
 import model.Usuario;
 
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
+import java.sql.*;
 import java.util.ArrayList;
 
 public class DAOUsuarioImpl extends DBConexion implements DAOUsuario {
@@ -72,5 +75,35 @@ public class DAOUsuarioImpl extends DBConexion implements DAOUsuario {
             this.cerrar();
         }
         return listaUsuario;
+    }
+    @Override
+    public boolean usuarioExiste(String usuario) throws SQLException{
+
+            this.conectar();
+            PreparedStatement prs = this.conexion.prepareStatement("SELECT * FROM usuario WHERE nombreUsuario = ?");
+            prs.setString(1, usuario);
+            ResultSet resultSet = prs.executeQuery();
+            if (!resultSet.isBeforeFirst()) {
+                return true;
+            }
+
+        return false;
+    }
+
+    @Override
+    public boolean revisarContrasenia(String contrasenia,String usuario) throws SQLException{
+
+            this.conectar();
+            PreparedStatement prs = this.conexion.prepareStatement("SELECT contrasena FROM usuario WHERE nombreUsuario = ?");
+            prs.setString(1, usuario);
+            ResultSet resultSet = prs.executeQuery();
+            while(resultSet.next()){
+                String retrievedPassword = resultSet.getString("contrasena");
+                if (retrievedPassword.equals(contrasenia)) {
+                    return true;
+                }
+            }
+
+        return false;
     }
 }

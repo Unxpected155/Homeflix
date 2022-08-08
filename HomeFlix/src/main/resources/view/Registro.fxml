@@ -16,9 +16,13 @@
             <Image url="@ChifrijoLogo.png" />
          </image>
       </ImageView>
+      <TextField id="inputCrearUsuario" fx:id="nombreTF" blendMode="SRC_ATOP" layoutX="87.0" layoutY="138.0" promptText="Nombre" style="-fx-background-color: #FFF6E8;" />
+      <TextField id="inputCrearUsuario" fx:id="identificacionTF" blendMode="SRC_ATOP" layoutX="87.0" layoutY="188.0" promptText="Identificacion" style="-fx-background-color: #FFF6E8;" />
+      <TextField id="inputCrearUsuario" fx:id="primerApellidoTF" blendMode="SRC_ATOP" layoutX="87.0" layoutY="241.0" promptText="Primer apellido" style="-fx-background-color: #FFF6E8;" />
+      <TextField id="inputCrearUsuario" fx:id="segundoApellidoTF" blendMode="SRC_ATOP" layoutX="87.0" layoutY="286.0" promptText="Segundo apellido" style="-fx-background-color: #FFF6E8;" />
+      <TextField id="inputCrearUsuario" fx:id="usuarioTF" blendMode="SRC_ATOP" layoutX="87.0" layoutY="340.0" prefHeight="25.0" prefWidth="149.0" promptText="Usuario" style="-fx-background-color: #FFF6E8;" />
       <TextField id="inputCrearContrasena" fx:id="contrasenaTF" blendMode="SRC_ATOP" layoutX="320.0" layoutY="138.0" promptText="Contraseña" style="-fx-background-color: #FFF6E8;" />
       <TextField id="inputConfirmarNuevaContrasena" fx:id="confirmarContrasenaTF" layoutX="321.0" layoutY="188.0" promptText="Confirmar Contraseña" style="-fx-background-color: #FFF6E8;" />
-      <TextField id="inputCrearUsuario" fx:id="usuarioTF" blendMode="SRC_ATOP" layoutX="87.0" layoutY="340.0" prefHeight="25.0" prefWidth="149.0" promptText="Usuario" style="-fx-background-color: #FFF6E8;" />
       <Button layoutX="26.0" layoutY="24.0" mnemonicParsing="false" onAction="#volverLogin" style="-fx-background-color: #B1896A; -fx-border-color: #000000; -fx-border-radius: 5px; -fx-background-radius: 10px;" text="Volver" textFill="WHITE">
          <effect>
             <Blend />
@@ -29,10 +33,6 @@
             <GaussianBlur radius="0.0" />
          </effect>
       </Button>
-      <TextField id="inputCrearUsuario" fx:id="nombreTF" blendMode="SRC_ATOP" layoutX="87.0" layoutY="138.0" promptText="Nombre" style="-fx-background-color: #FFF6E8;" />
-      <TextField id="inputCrearUsuario" fx:id="segundoApellidoTF" blendMode="SRC_ATOP" layoutX="87.0" layoutY="286.0" promptText="Segundo apellido" style="-fx-background-color: #FFF6E8;" />
-      <TextField id="inputCrearUsuario" fx:id="identificacionTF" blendMode="SRC_ATOP" layoutX="87.0" layoutY="188.0" promptText="Identificacion" style="-fx-background-color: #FFF6E8;" />
-      <TextField id="inputCrearUsuario" fx:id="primerApellidoTF" blendMode="SRC_ATOP" layoutX="87.0" layoutY="241.0" promptText="Primer apellido" style="-fx-background-color: #FFF6E8;" />
       <Button layoutX="320.0" layoutY="228.0" mnemonicParsing="false" onAction="#buscarAvatar" prefHeight="27.0" prefWidth="149.0" style="-fx-background-color: #B1896A; -fx-border-color: #000000; -fx-background-radius: 10px; -fx-border-radius: 5px;" text="Seleccionar Avatar" textFill="WHITE">
          <effect>
             <Blend />
