@@ -23,6 +23,11 @@ public class ControllerPrincipal {
     private Scene scene;
     private Parent root;
 
+    /**
+     * Cambia la pantalla actual por la pantalla de busqueda
+     * @param event un evento representando un tipo de action
+     * @throws IOException signo de que algun tipo de excepcion ha ocurrido
+     */
     public void botonBusqueda(ActionEvent event) throws IOException {
         root = FXMLLoader.load(getClass().getResource("Busqueda.fxml"));
         stage = (Stage)((Node)event.getSource()).getScene().getWindow();
