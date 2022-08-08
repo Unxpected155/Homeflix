@@ -93,6 +93,13 @@ public class ControllerBusqueda implements Initializable{
         stage.setScene(scene);
         stage.show();
     }
+
+    /**
+     * @Author Luis Diego Obando
+     *
+     * Funcion que se encarga de poermitir al usuario buscar un video en sus archivos.
+     *
+     */
     public void buscarVideo(){
         DAOVideo daoVideo = new DAOVideoImpl();
         videosList = FXCollections.observableArrayList();
