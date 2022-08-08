@@ -25,6 +25,15 @@ public class Main extends Application {
         stage.show();
     }
 
+    /**
+     *
+     * @Author Luis Diego Obando
+     * 
+     *  Funcion main del proyecto.
+     *
+     * @param args Recibe un array de tipo String.
+     */
+
     public static void main(String[] args) {
         launch();
     }
