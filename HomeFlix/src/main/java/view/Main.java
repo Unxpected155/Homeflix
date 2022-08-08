@@ -8,6 +8,15 @@ import javafx.stage.Stage;
 import java.io.IOException;
 
 public class Main extends Application {
+
+    /**
+     *
+     * @Author Luis Diego Obando
+     *
+     * @param stage Recibe un escenario para ejecutar.
+     * @throws IOException Signo de que algun tipo de excepcion ha ocurrido.
+     */
+
     @Override
     public void start(Stage stage) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("Login.fxml"));
@@ -15,6 +24,15 @@ public class Main extends Application {
         stage.setScene(scene);
         stage.show();
     }
+
+    /**
+     *
+     * @Author Luis Diego Obando
+     * 
+     *  Funcion main del proyecto.
+     *
+     * @param args Recibe un array de tipo String.
+     */
 
     public static void main(String[] args) {
         launch();
