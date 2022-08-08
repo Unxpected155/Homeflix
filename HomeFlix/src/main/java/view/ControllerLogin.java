@@ -26,6 +26,11 @@ public class ControllerLogin {
     private Scene scene;
     private Parent root;
 
+    /**
+     * Cambia la pantalla actual hacia la pantalla de registro
+     * @param event un evento representando un tipo de action
+     * @throws IOException signo de que algun tipo de excepcion ha ocurrido
+     */
     public void cambiarEscenaRegistro(ActionEvent event) throws IOException {
         root = FXMLLoader.load(getClass().getResource("Registro.fxml"));
         stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
@@ -33,6 +38,12 @@ public class ControllerLogin {
         stage.setScene(scene);
         stage.show();
     }
+
+    /**
+     * Se asegura con la base de datos que el usuario y la contrasena existan para ingresar a la pagina principal
+     * @param event un evento representando un tipo de action
+     * @throws IOException signo de que algun tipo de excepcion ha ocurrido
+     */
     public void botonLogin(ActionEvent event) throws Exception {
         String usuario = usuarioTF.getText();
         String contrasenia = contrasenaTF.getText();
