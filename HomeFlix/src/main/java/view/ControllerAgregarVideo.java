@@ -49,6 +49,9 @@ public class ControllerAgregarVideo {
         stage.show();
     }
 
+    /**
+     * funcion que busca un documento .mp4 en el explorador de archivos y obtiene el nombre del archivo
+     */
     public void buscarVideo() {
         FileChooser fileChooser = new FileChooser();
         fileChooser.setTitle("Buscar Video");
