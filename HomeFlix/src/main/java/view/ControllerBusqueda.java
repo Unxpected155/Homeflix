@@ -126,11 +126,12 @@ public class ControllerBusqueda implements Initializable{
 
     /**
      *
+     * @Author Luis Diego Obando
      *
+     *  Funcion inicializar que se encarga de inicializar objetos dentro de ella para poder ser utilizados y ejecutados
      *
-     *
-     * @param url
-     * @param resourceBundle
+     * @param url Recibe un objeto tipo url
+     * @param resourceBundle recibe un objeto tipo resourceBundle
      */
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
