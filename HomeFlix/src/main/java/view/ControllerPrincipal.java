@@ -48,6 +48,12 @@ public class ControllerPrincipal {
         stage.setScene(scene);
         stage.show();
     }
+
+    /**
+     * funcion que cambia la pantalla actual a la pantalla agregar video
+     * @param event un evento representando un tipo de action
+     * @throws IOException signo de que algun tipo de excepcion ha ocurrido
+     */
     public void botonAgregarVideo(ActionEvent event) throws IOException{
         root = FXMLLoader.load(getClass().getResource("AgregarVideo.fxml"));
         stage = (Stage)((Node)event.getSource()).getScene().getWindow();
