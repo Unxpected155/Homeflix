@@ -43,7 +43,12 @@ public class ControllerRegistro {
     @FXML
     private TextField confirmarContrasenaTF;
 
-
+    /**
+     * Cambia la pantalla actual por la pantalla Login
+     * @author Gabriel Porras Brenes
+     * @param event un evento representando un tipo de action
+     * @throws IOException signo de que algun tipo de excepcion ha ocurrido
+     */
     public void volverLogin(ActionEvent event) throws IOException {
         root = FXMLLoader.load(getClass().getResource("Login.fxml"));
         stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
