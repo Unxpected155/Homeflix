@@ -35,6 +35,12 @@ public class ControllerPrincipal {
         stage.setScene(scene);
         stage.show();
     }
+
+    /**
+     * funcion para volver a la pantalla de Login
+     * @param event un evento representando un tipo de action
+     * @throws IOException signo de que algun tipo de excepcion ha ocurrido
+     */
     public void botonVolver(ActionEvent event) throws IOException {
         root = FXMLLoader.load(getClass().getResource("Login.fxml"));
         stage = (Stage)((Node)event.getSource()).getScene().getWindow();
