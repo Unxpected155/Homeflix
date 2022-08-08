@@ -36,6 +36,11 @@ public class ControllerAgregarVideo {
     private Scene scene;
     private Parent root;
 
+    /**
+     * Cmabia la pantalla actual a la pantalla principal
+     * @param event un evento representando un tipo de action
+     * @throws IOException signo de que algun tipo de excepcion ha ocurrido
+     */
     public void volverPrincipal(ActionEvent event) throws IOException {
         root = FXMLLoader.load(getClass().getResource("Principal.fxml"));
         stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
