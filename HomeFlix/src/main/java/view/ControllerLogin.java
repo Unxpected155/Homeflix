@@ -1,5 +1,9 @@
 package view;
 
+import DBConexion.DAOUsuarioImpl;
+import DBConexion.DAOVideoImpl;
+import Interfaces.DAOUsuario;
+import Interfaces.DAOVideo;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -29,42 +33,26 @@ public class ControllerLogin {
         stage.setScene(scene);
         stage.show();
     }
-    public void botonLogin(ActionEvent event) throws IOException {
+    public void botonLogin(ActionEvent event) throws Exception {
         String usuario = usuarioTF.getText();
         String contrasenia = contrasenaTF.getText();
-        ResultSet resultSet = null;
-        Connection connection = null;
-        PreparedStatement prs = null;
-        try {
-            connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/javafx-homeflix", "root", "toor");
-            prs = connection.prepareStatement("SELECT password FROM cuentapersona WHERE username = ?");
-            prs.setString(1, usuario);
-            resultSet = prs.executeQuery();
-            if (!resultSet.isBeforeFirst()) {
-                System.out.println("Usuario no encontrado en la base de datos!");
-                Alert alert = new Alert(Alert.AlertType.ERROR);
-                alert.setContentText("El usuario no existe!");
-                alert.show();
+        DAOUsuario daoUsuario = new DAOUsuarioImpl();
+        if(daoUsuario.usuarioExiste(usuario)){
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setContentText("El usuario no existe");
+            alert.show();
+        } else {
+            if(daoUsuario.revisarContrasenia(contrasenia,usuario)) {
+                root = FXMLLoader.load(getClass().getResource("Principal.fxml"));
+                stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                scene = new Scene(root);
+                stage.setScene(scene);
+                stage.show();
             } else {
-                while (resultSet.next()) {
-                    String retrievedPassword = resultSet.getString("password");
-                    if (retrievedPassword.equals(contrasenia)) {
-                        root = FXMLLoader.load(getClass().getResource("Principal.fxml"));
-                        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-                        scene = new Scene(root);
-                        stage.setScene(scene);
-                        stage.show();
-                    } else {
-                        System.out.println("La contrasenia es incorrecta");
-                        Alert alert = new Alert(Alert.AlertType.ERROR);
-                        alert.setContentText("La contraseña es incorrecta");
-                        alert.show();
-                    }
-                }
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setContentText("La contraseña no coincide con el usuario");
+                alert.show();
             }
-
-        } catch (SQLException e) {
-            e.printStackTrace();
         }
 
     }
