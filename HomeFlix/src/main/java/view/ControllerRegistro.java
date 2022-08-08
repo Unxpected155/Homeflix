@@ -57,6 +57,12 @@ public class ControllerRegistro {
         stage.show();
     }
 
+    /**
+     *Crea un usuario nuevo
+     * @author Gabriel Porras Brenes
+     * @param event un evento representando un tipo de action
+     * @throws Exception signo de que algun tipo de excepcion ha ocurrido
+     */
     public void botonCrear(ActionEvent event) throws Exception {
         String nombre = nombreTF.getText();
         String identificacion = identificacionTF.getText();
