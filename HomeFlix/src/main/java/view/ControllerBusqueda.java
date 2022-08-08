@@ -24,6 +24,12 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
+
+/**
+ *
+ * @Author Luis Diego Obando.
+ *
+ */
 public class ControllerBusqueda implements Initializable{
     private Stage stage;
     private Scene scene;
@@ -49,6 +55,15 @@ public class ControllerBusqueda implements Initializable{
 
     private ObservableList<Video> videosList;
 
+    /**
+     *
+     * @Author Luis Diego Obando
+     *
+     *  Funcion que se encarga de volver a la pagina principal.
+     *
+     * @param event parametro que recibe un objeti ActionEvent
+     * @throws IOException signo de que algun tipo de excepcion ha ocurrido.
+     */
     public void volverPrincipal(ActionEvent event) throws IOException {
         root = FXMLLoader.load(getClass().getResource("Principal.fxml"));
         stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
@@ -56,7 +71,6 @@ public class ControllerBusqueda implements Initializable{
         stage.setScene(scene);
         stage.show();
     }
-
     public void seleccionarVideo(ActionEvent event) throws IOException {
         ObservableList<Video> videoSeleccionado;
         videoSeleccionado = tblVideos.getSelectionModel().getSelectedItems();
