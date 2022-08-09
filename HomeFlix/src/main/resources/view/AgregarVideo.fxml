@@ -43,5 +43,6 @@
       </ImageView>
       <Button layoutX="383.0" layoutY="254.0" mnemonicParsing="false" onAction="#buscarVideo" prefHeight="27.0" prefWidth="139.0" style="-fx-background-color: #B1896A; -fx-border-color: #000000; -fx-border-radius: 5px; -fx-background-radius: 10px;" text="Seleccionar Video" />
       <Label fx:id="videoLB" alignment="CENTER" contentDisplay="CENTER" layoutX="328.0" layoutY="290.0" prefHeight="17.0" prefWidth="250.0" />
+      <Label fx:id="videoDuracion" layoutX="527.0" layoutY="14.0" prefHeight="17.0" prefWidth="58.0" visible="false" />
    </children>
 </AnchorPane>

@@ -11,14 +11,14 @@ import java.util.ArrayList;
 
 public class DAOVideoImpl extends DBConexion implements DAOVideo {
     @Override
-    public void agregarVideos (String nombre, String categoria, double duracion, String dia, String descripcion, String localizacion) throws Exception {
+    public void agregarVideos (String nombre, String categoria, String duracion, String dia, String descripcion, String localizacion) throws Exception {
         boolean bandera = true;
         try {
             this.conectar();
             PreparedStatement st = this.conexion.prepareStatement("INSERT INTO video (nombre, categoria, duracion, fechaAnadido, descripcion, localizacion) VALUES (?,?,?,?,?,?)");
             st.setString(1, nombre);
             st.setString(2, categoria);
-            st.setDouble(3, duracion);
+            st.setString(3, duracion);
             st.setString(4, dia);
             st.setString(5, descripcion);
             st.setString(6, localizacion);
@@ -41,7 +41,7 @@ public class DAOVideoImpl extends DBConexion implements DAOVideo {
             while(rs.next()) {
                 Video video = new Video();
                 video.setName(rs.getString("nombre"));
-                video.setDuracion(rs.getDouble("duracion"));
+                video.setDuracion(rs.getString("duracion"));
                 video.setCategory(rs.getString("categoria"));
                 video.setDate(rs.getString("fechaAnadido"));
                 video.setDescripcion(rs.getString("descripcion"));
@@ -74,7 +74,7 @@ public class DAOVideoImpl extends DBConexion implements DAOVideo {
                 if(retrivedNombre.equalsIgnoreCase(nombre) && retrievedCategoria.equalsIgnoreCase(categoria)){
                     Video video = new Video();
                     video.setName(rs.getString("nombre"));
-                    video.setDuracion(rs.getDouble("duracion"));
+                    video.setDuracion(rs.getString("duracion"));
                     video.setCategory(rs.getString("categoria"));
                     video.setDate(rs.getString("fechaAnadido"));
                     video.setDescripcion(rs.getString("descripcion"));
