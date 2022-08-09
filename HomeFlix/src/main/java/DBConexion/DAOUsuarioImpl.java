@@ -12,6 +12,13 @@ import java.sql.*;
 import java.util.ArrayList;
 
 public class DAOUsuarioImpl extends DBConexion implements DAOUsuario {
+
+    /**
+     * La funcion permite agregar usuarios a la base de datos
+     * @author Michael Ng
+     * @param usuario Recibe un parametro tipo Usuario y es para agregar el objeto a la base de datos
+     * @throws Exception en caso de que el query tenga un error
+     */
     @Override
     public void agregarUsuario(Usuario usuario) throws Exception {
         boolean bandera = true;
@@ -48,6 +55,11 @@ public class DAOUsuarioImpl extends DBConexion implements DAOUsuario {
         }
     }
 
+    /**
+     *
+     * @return Retorna un dato de tipo ArrayList y funciona para listar a todos los usaurios en la base de datos
+     * @throws Exception En caso de que el query tenga un error
+     */
     @Override
     public ArrayList<Usuario> listarUsuarios() throws Exception {
         ArrayList<Usuario> listaUsuario = null;
@@ -76,6 +88,14 @@ public class DAOUsuarioImpl extends DBConexion implements DAOUsuario {
         }
         return listaUsuario;
     }
+
+    /**
+     * La funcion permite a la aplicacion averiguar si el usuario que esta siendo ingresado existe en la base de datos
+     * @author Michael NG
+     * @param usuario recibe un dato de tipo String y es para averiguar si el usuario ingresado esta registrado en la base de datos
+     * @return retorna un valor tipo boolean para averiguar si el usuario existe o no
+     * @throws SQLException En caso de que el query tenga un error
+     */
     @Override
     public boolean usuarioExiste(String usuario) throws SQLException{
 
@@ -90,6 +110,14 @@ public class DAOUsuarioImpl extends DBConexion implements DAOUsuario {
         return false;
     }
 
+    /**
+     * La funcion permite revisar si la contrasena que ingresa el usuario coincide con el usuario ingresado
+     * @author Michael Ng
+     * @param contrasenia recibe un dato de tipo String y es para revisar si la contrasena coincide con la contrasena del usuario ingresado
+     * @param usuario recibe un dato de tipo String y es para revisar cual es el usuario que esta siendo ingresado en la aplicacion
+     * @return retorna un tipo de dato boolean para averiguar si la contrasena es correcta o no
+     * @throws SQLException En caso de que el query tenga un error
+     */
     @Override
     public boolean revisarContrasenia(String contrasenia,String usuario) throws SQLException{
 
