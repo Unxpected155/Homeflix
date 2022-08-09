@@ -63,7 +63,7 @@ public class ControllerAgregarVideo {
     }
 
     /**
-     * @author Gabriel Porras Brenes
+     * @author Gabriel Porras Brenes, Michael Ng
      * funcion que busca un documento .mp4 en el explorador de archivos y obtiene el nombre del archivo
      */
     public void buscarVideo() {
@@ -93,6 +93,12 @@ public class ControllerAgregarVideo {
     }
 
 
+    /**
+     * Funcion que hace la conversion de tiempo para el video
+     * @author Michael Ng
+     * @param tiempo recibe como parametro el tiempo del video.
+     * @return retorna un String del tiempo del Video
+     */
     public String obtenerTiempo(Duration tiempo) {
 
         int horas = (int) tiempo.toHours();
