@@ -25,11 +25,6 @@ import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 
-/**
- *
- * @Author Luis Diego Obando.
- *
- */
 public class ControllerBusqueda implements Initializable{
     private Stage stage;
     private Scene scene;
@@ -56,11 +51,8 @@ public class ControllerBusqueda implements Initializable{
     private ObservableList<Video> videosList;
 
     /**
-     *
-     * @Author Luis Diego Obando
-     *
-     *  Funcion que se encarga de volver a la pagina principal.
-     *
+     * @author Luis Diego Obando
+     * Funcion que se encarga de volver a la pagina principal.
      * @param event parametro que recibe un objeti ActionEvent
      * @throws IOException signo de que algun tipo de excepcion ha ocurrido.
      */
@@ -74,10 +66,8 @@ public class ControllerBusqueda implements Initializable{
 
     /**
      *
-     * @Author Luis Diego Obando
-     *
-     *  Funcion que se encarga de permitir al usuario seleccionar un video.
-     *
+     * @author Luis Diego Obando
+     * Funcion que se encarga de permitir al usuario seleccionar un video.
      * @param event recibe un parametro de evento.
      * @throws IOException signo de que algun tipo de excepcion ha ocurrido.
      */
@@ -95,10 +85,8 @@ public class ControllerBusqueda implements Initializable{
     }
 
     /**
-     * @Author Luis Diego Obando
-     *
+     * @author Luis Diego Obando
      * Funcion que se encarga de poermitir al usuario buscar un video en sus archivos.
-     *
      */
     public void buscarVideo(){
         DAOVideo daoVideo = new DAOVideoImpl();
@@ -126,10 +114,8 @@ public class ControllerBusqueda implements Initializable{
 
     /**
      *
-     * @Author Luis Diego Obando
-     *
-     *  Funcion inicializar que se encarga de inicializar objetos dentro de ella para poder ser utilizados y ejecutados
-     *
+     * @author Luis Diego Obando
+     * Funcion inicializar que se encarga de inicializar objetos dentro de ella para poder ser utilizados y ejecutados
      * @param url Recibe un objeto tipo url
      * @param resourceBundle recibe un objeto tipo resourceBundle
      */
