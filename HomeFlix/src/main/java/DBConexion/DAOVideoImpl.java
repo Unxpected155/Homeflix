@@ -24,7 +24,6 @@ public class DAOVideoImpl extends DBConexion implements DAOVideo {
      */
     @Override
     public void agregarVideos (String nombre, String categoria, String duracion, String dia, String descripcion, String localizacion) throws Exception {
-        boolean bandera = true;
         try {
             this.conectar();
             PreparedStatement st = this.conexion.prepareStatement("INSERT INTO video (nombre, categoria, duracion, fechaAnadido, descripcion, localizacion) VALUES (?,?,?,?,?,?)");
@@ -50,7 +49,7 @@ public class DAOVideoImpl extends DBConexion implements DAOVideo {
      */
     @Override
     public ArrayList<Video> listarVideos() throws Exception {
-        ArrayList<Video> listarVideos = null;
+        ArrayList<Video> listarVideos;
         try{
             this.conectar();
             PreparedStatement st = this.conexion.prepareStatement("SELECT * FROM video");
@@ -86,7 +85,7 @@ public class DAOVideoImpl extends DBConexion implements DAOVideo {
      */
     @Override
     public ArrayList<Video> listarVideoNC(String nombre, String categoria) throws Exception {
-        ArrayList<Video> listarVideos = null;
+        ArrayList<Video> listarVideos;
         try{
             this.conectar();
             PreparedStatement st = this.conexion.prepareStatement("SELECT * FROM video WHERE nombre=? AND categoria=?");
