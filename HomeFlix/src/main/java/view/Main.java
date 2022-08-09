@@ -11,7 +11,7 @@ public class Main extends Application {
 
     /**
      *
-     * @Author Luis Diego Obando
+     * @author Luis Diego Obando
      *
      * @param stage Recibe un escenario para ejecutar.
      * @throws IOException Signo de que algun tipo de excepcion ha ocurrido.
@@ -27,7 +27,7 @@ public class Main extends Application {
 
     /**
      *
-     * @Author Luis Diego Obando
+     * @author Luis Diego Obando
      * 
      *  Funcion main del proyecto.
      *
