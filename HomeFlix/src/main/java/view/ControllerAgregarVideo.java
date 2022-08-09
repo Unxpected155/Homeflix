@@ -77,7 +77,18 @@ public class ControllerAgregarVideo {
         File vidFile = fileChooser.showOpenDialog(null);
         if (vidFile != null) {
             videoLB.setText(vidFile.toString());
+            mediaVideo = new Media(new File(videoLB.getText()).toURI().toString());
+            mediaPlayer = new MediaPlayer(mediaVideo);
 
+
+            mediaPlayer.totalDurationProperty().addListener(new ChangeListener<Duration>() {
+                @Override
+                public void changed(ObservableValue<? extends Duration> observableValue, Duration duration, Duration t1) {
+                    String tiempoVideo =  obtenerTiempo(mediaPlayer.getTotalDuration());
+                    videoDuracion.setText(tiempoVideo);
+                    System.out.println("VideoDuracion" + videoDuracion.getText());
+                }
+            });
         }
     }
 
