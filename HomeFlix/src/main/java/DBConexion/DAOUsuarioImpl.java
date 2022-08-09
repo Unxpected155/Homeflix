@@ -56,7 +56,8 @@ public class DAOUsuarioImpl extends DBConexion implements DAOUsuario {
     }
 
     /**
-     *
+     * La funcion esta para listar todos los usuarios en la base de datos
+     * @auhthor Michael Ng
      * @return Retorna un dato de tipo ArrayList y funciona para listar a todos los usaurios en la base de datos
      * @throws Exception En caso de que el query tenga un error
      */
