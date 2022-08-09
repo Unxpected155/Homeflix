@@ -36,12 +36,6 @@ import java.net.URL;
 import java.util.ResourceBundle;
 import java.util.concurrent.Callable;
 
-/**
- *
- * @Author Luis Diego Obando
- *
- */
-
 public class ControllerReproductor implements Initializable {
 
     @FXML
