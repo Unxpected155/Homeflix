@@ -9,7 +9,7 @@ public class Video {
 
     private String category;
 
-    private double duracion;
+    private String duracion;
 
     private String date;
 
@@ -19,7 +19,7 @@ public class Video {
 
     private ArrayList<Usuario> likes;
 
-    public Video(String name, String category, double duracion, String date, String descripcion, String localizacion, ArrayList<Usuario> likes) {
+    public Video(String name, String category, String duracion, String date, String descripcion, String localizacion, ArrayList<Usuario> likes) {
         this.name = name;
         this.category = category;
         this.duracion = duracion;
@@ -31,7 +31,7 @@ public class Video {
     public Video(){
 
     }
-    public Video(String name, String category, double duracion, String date, String descripcion, String localizacion) {
+    public Video(String name, String category, String duracion, String date, String descripcion, String localizacion) {
         this.name = name;
         this.category = category;
         this.duracion = duracion;
@@ -65,11 +65,11 @@ public class Video {
         this.category = category;
     }
 
-    public double getDuracion() {
+    public String getDuracion() {
         return duracion;
     }
 
-    public void setDuracion(double duracion) {
+    public void setDuracion(String duracion) {
         this.duracion = duracion;
     }
 
