@@ -24,7 +24,6 @@ public class DAOVideoImpl extends DBConexion implements DAOVideo {
      */
     @Override
     public void agregarVideos (String nombre, String categoria, String duracion, String dia, String descripcion, String localizacion) throws Exception {
-        boolean bandera = true;
         try {
             this.conectar();
             PreparedStatement st = this.conexion.prepareStatement("INSERT INTO video (nombre, categoria, duracion, fechaAnadido, descripcion, localizacion) VALUES (?,?,?,?,?,?)");
