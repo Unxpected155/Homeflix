@@ -48,6 +48,10 @@ public class ControllerBusqueda implements Initializable{
     @FXML
     private TableView<Video> tblVideos;
 
+    private static ArrayList<Video> videos;
+
+    public static boolean accederBase = true;
+
     private ObservableList<Video> videosList;
 
     /**
@@ -91,15 +95,18 @@ public class ControllerBusqueda implements Initializable{
     public void buscarVideo(){
         DAOVideo daoVideo = new DAOVideoImpl();
         videosList = FXCollections.observableArrayList();
-        ArrayList<Video> videosSeleccionados = null;
         String nombre = nombreVideoTF.getText();
         String categoria = categoriaTF.getText();
-        try {
-            videosSeleccionados = daoVideo.listarVideoNC(nombre,categoria);
-        } catch (Exception e) {
-            throw new RuntimeException(e);
+        if(ControllerBusqueda.accederBase){
+            try {
+                ControllerBusqueda.videos = daoVideo.listarVideoNC(nombre,categoria);
+                ControllerBusqueda.accederBase = false;
+            } catch (Exception e) {
+                throw new RuntimeException(e);
+            }
         }
-        videosList.setAll(videosSeleccionados);
+
+        videosList.setAll(ControllerBusqueda.videos);
         this.nombreCO.setCellValueFactory(new PropertyValueFactory<>("name"));
         this.categoriaCO.setCellValueFactory(new PropertyValueFactory<>("category"));
         this.duracionCO.setCellValueFactory(new PropertyValueFactory<>("duracion"));

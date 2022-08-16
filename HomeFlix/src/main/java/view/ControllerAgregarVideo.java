@@ -151,6 +151,7 @@ public class ControllerAgregarVideo {
                 Alert alert = new Alert(Alert.AlertType.INFORMATION);
                 alert.setContentText("El video fue agregado exitosamente");
                 alert.show();
+                ControllerBusqueda.accederBase = true;
             } catch (Exception e) {
                 System.out.println(e.getMessage());
             }
