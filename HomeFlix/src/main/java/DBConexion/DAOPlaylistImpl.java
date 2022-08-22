@@ -30,7 +30,17 @@ public class DAOPlaylistImpl extends DBConexion implements DAOPlaylist {
     }
 
     @Override
-    public void agregarVideoPlaylist(String path, String nombrePlaylist) throws Exception {
+    public void agregarVideoPlaylist(int idPlaylist, int idVideo) throws Exception {
 
+    try{
+        this.conectar();
+        PreparedStatement prs = this.conexion.prepareStatement("INSERT INTO playlist_has_video (playlist_idplaylist, video_idvideo) VALUES (?,?)");
+        prs.setInt(1, idPlaylist);
+        prs.setInt(2,idVideo);
+    } catch (Exception e){
+        throw e;
+    } finally {
+        this.cerrar();
+    }
     }
 }
