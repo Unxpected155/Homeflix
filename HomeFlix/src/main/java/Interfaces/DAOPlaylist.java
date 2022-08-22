@@ -8,4 +8,6 @@ public interface DAOPlaylist {
 
     public void agregarPlaylist(String nombre, String duracion, String fechaCreacion) throws Exception;
 
+    public void agregarVideoPlaylist(String path, String nombrePlaylist) throws Exception;
+
 }
