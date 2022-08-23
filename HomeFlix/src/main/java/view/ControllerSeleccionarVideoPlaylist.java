@@ -66,6 +66,18 @@ public class ControllerSeleccionarVideoPlaylist implements Initializable {
         stage.setScene(scene);
         stage.show();
     }
+    public void seleccionarVideo(ActionEvent event) throws IOException {
+        ObservableList<Video> videoSeleccionado;
+        videoSeleccionado = tblVideos.getSelectionModel().getSelectedItems();
+        String path = videoSeleccionado.get(0).getLocalizacion();
+        ControllerReproductor.setPath(path);
+
+        root = FXMLLoader.load(getClass().getResource("Reproductor.fxml"));
+        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+    }
 
 
     @Override
