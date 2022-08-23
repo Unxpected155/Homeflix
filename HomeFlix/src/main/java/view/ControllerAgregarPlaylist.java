@@ -29,5 +29,15 @@ public class ControllerAgregarPlaylist {
         stage.show();
     }
 
+    public void botonAgregar(){
+        String nombre = nombrePlaylist.getText();
+        String fechaAnadido = java.time.LocalDate.now().toString();
+        try {
+            DAOPlaylist daoPlaylist = new DAOPlaylistImpl();
+            daoPlaylist.agregarPlaylist(nombre, "00:00", fechaAnadido, ControllerLogin.getIdUsuarioIngresado());
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+    }
 
 }
