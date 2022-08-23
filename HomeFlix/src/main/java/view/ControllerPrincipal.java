@@ -17,6 +17,7 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 import model.Playlist;
+import model.Video;
 
 import java.io.*;
 import java.net.*;
@@ -26,6 +27,28 @@ import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 public class ControllerPrincipal implements Initializable {
+
+    @FXML
+    private TableView<Video> tblVideoReciente;
+
+    @FXML
+    private TableColumn<Video, String> nombreVidCO;
+
+    @FXML
+    private TableColumn<Video, String> localizacionCO;
+
+    @FXML
+    private TableColumn<Video, String> categoriaCO;
+
+    @FXML
+    private TableColumn<Video, String> duracionCO;
+
+    public static ArrayList<Video> videosRecientes = new ArrayList<Video>();
+
+    public static ArrayList<Video> getVideosRecientes() {
+        return videosRecientes;
+    }
+
 
     @FXML
     private TableView<Playlist> tblPlaylist;
@@ -46,6 +69,8 @@ public class ControllerPrincipal implements Initializable {
     private Button joinServer;
 
     private ObservableList<Playlist> playlistList;
+
+    private ObservableList<Video> videoReciente;
 
     public static String username;
 
@@ -163,5 +188,15 @@ public class ControllerPrincipal implements Initializable {
         this.fechaCO.setCellValueFactory(new PropertyValueFactory<>("fechaCreacion"));
 
         tblPlaylist.setItems(playlistList);
+
+        videoReciente = FXCollections.observableArrayList();
+        videoReciente.setAll(ControllerPrincipal.getVideosRecientes());
+        this.nombreVidCO.setCellValueFactory(new PropertyValueFactory<>("name"));
+        this.categoriaCO.setCellValueFactory(new PropertyValueFactory<>("category"));
+        this.duracionCO.setCellValueFactory(new PropertyValueFactory<>("duracion"));
+        this.localizacionCO.setCellValueFactory(new PropertyValueFactory<>("localizacion"));
+
+        tblVideoReciente.setItems(videoReciente);
+
     }
 }
