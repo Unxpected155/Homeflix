@@ -49,6 +49,14 @@ public class ControllerPrincipal implements Initializable {
         return videosRecientes;
     }
 
+    public static void agregarVideoReciente(Video v){
+        if(ControllerPrincipal.getVideosRecientes().size() < 6) {
+            videosRecientes.add(v);
+        } else {
+            videosRecientes.add(v);
+            videosRecientes.remove(0);
+        }
+    }
 
     @FXML
     private TableView<Playlist> tblPlaylist;
