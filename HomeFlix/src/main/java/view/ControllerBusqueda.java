@@ -80,6 +80,7 @@ public class ControllerBusqueda implements Initializable{
         videoSeleccionado = tblVideos.getSelectionModel().getSelectedItems();
         String path = videoSeleccionado.get(0).getLocalizacion();
         ControllerReproductor.setPath(path);
+        ControllerPrincipal.agregarVideoReciente(videoSeleccionado.get(0));
 
         root = FXMLLoader.load(getClass().getResource("Reproductor.fxml"));
         stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
