@@ -73,6 +73,14 @@ public class ControllerPrincipal {
         stage.show();
     }
 
+    public void botonAgregarPlaylist(ActionEvent event) throws IOException{
+        root = FXMLLoader.load(getClass().getResource("AgregarPlaylist.fxml"));
+        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+    }
+
     public void botonJoinServer(ActionEvent event) throws IOException {
         root = FXMLLoader.load(getClass().getResource("ConectarCliente.fxml"));
         stage = (Stage)((Node)event.getSource()).getScene().getWindow();
