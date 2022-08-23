@@ -138,6 +138,7 @@ public class ControllerPrincipal implements Initializable {
         ObservableList<Playlist> playlistSeleccionado;
         playlistSeleccionado = tblPlaylist.getSelectionModel().getSelectedItems();
         String nombrePlaylist = playlistSeleccionado.get(0).getNombre();
+        ControllerSeleccionarVideoPlaylist.setNombrePlaylist(nombrePlaylist);
 
         root = FXMLLoader.load(getClass().getResource("SeleccionarVideoPlaylist.fxml"));
         stage = (Stage)((Node)event.getSource()).getScene().getWindow();
