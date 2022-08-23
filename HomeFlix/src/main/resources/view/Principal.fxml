@@ -11,9 +11,9 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #FF8C00;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.ControllerPrincipal">
    <children>
-      <Button layoutX="51.0" layoutY="358.0" mnemonicParsing="false" onAction="#botonBusqueda" style="-fx-background-color: #B1896A; -fx-border-color: #000000; -fx-border-radius: 5px; -fx-background-radius: 10px;" text="Buscar" textFill="WHITE" />
-      <Button layoutX="202.0" layoutY="358.0" mnemonicParsing="false" onAction="#botonJoinServer" style="-fx-background-color: #B1896A; -fx-border-color: #000000; -fx-border-radius: 5px; -fx-background-radius: 10px;" text="Join" textFill="WHITE" />
-      <Button layoutX="323.0" layoutY="358.0" mnemonicParsing="false" onAction="#iniciarServidor" style="-fx-background-color: #B1896A; -fx-border-color: #000000; -fx-border-radius: 5px; -fx-background-radius: 10px;" text="Start Host" textFill="WHITE" />
+      <Button layoutX="180.0" layoutY="358.0" mnemonicParsing="false" onAction="#botonBusqueda" style="-fx-background-color: #B1896A; -fx-border-color: #000000; -fx-border-radius: 5px; -fx-background-radius: 10px;" text="Buscar" textFill="WHITE" />
+      <Button layoutX="280.0" layoutY="358.0" mnemonicParsing="false" onAction="#botonJoinServer" style="-fx-background-color: #B1896A; -fx-border-color: #000000; -fx-border-radius: 5px; -fx-background-radius: 10px;" text="Join" textFill="WHITE" />
+      <Button layoutX="358.0" layoutY="358.0" mnemonicParsing="false" onAction="#iniciarServidor" style="-fx-background-color: #B1896A; -fx-border-color: #000000; -fx-border-radius: 5px; -fx-background-radius: 10px;" text="Start Host" textFill="WHITE" />
       <Label layoutX="70.0" layoutY="117.0" text="Ultimos Videos Vistos">
          <font>
             <Font size="18.0" />
@@ -32,9 +32,12 @@
       <Button layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onAction="#botonVolver" style="-fx-background-color: #B1896A; -fx-border-color: #000000; -fx-border-radius: 5px; -fx-background-radius: 10px;" text="Volver" textFill="WHITE" />
       <Button layoutX="494.0" layoutY="52.0" mnemonicParsing="false" onAction="#botonAgregarVideo" style="-fx-background-color: #B1896A; -fx-border-color: #000000; -fx-border-radius: 5px; -fx-background-radius: 10px;" text="Agregar Video" textFill="WHITE" />
       <Button layoutX="491.0" layoutY="14.0" mnemonicParsing="false" onAction="#botonAgregarPlaylist" style="-fx-background-color: #B1896A; -fx-border-color: #000000; -fx-border-radius: 5px; -fx-background-radius: 10px;" text="Agregar Playlist" textFill="WHITE" />
-      <TableView layoutX="20.0" layoutY="144.0" prefHeight="200.0" prefWidth="272.0">
+      <TableView fx:id="tblVideoReciente" layoutX="20.0" layoutY="144.0" prefHeight="200.0" prefWidth="272.0">
          <columns>
-            <TableColumn prefWidth="271.0" text="Nombres de los Videos" />
+            <TableColumn fx:id="nombreVidCO" prefWidth="95.0" text="Nombre" />
+            <TableColumn fx:id="categoriaCO" prefWidth="92.0" text="Categoria" />
+            <TableColumn fx:id="duracionCO" prefWidth="87.0" text="Duracion" />
+            <TableColumn fx:id="localizacionCO" prefWidth="76.0" text="Column X" />
          </columns>
       </TableView>
       <TableView fx:id="tblPlaylist" layoutX="306.0" layoutY="144.0" prefHeight="200.0" prefWidth="272.0">
@@ -44,6 +47,7 @@
          </columns>
       </TableView>
       <Label fx:id="usuario" layoutX="14.0" layoutY="58.0" prefHeight="17.0" prefWidth="219.0" textAlignment="CENTER" />
-      <Button layoutX="442.0" layoutY="358.0" mnemonicParsing="false" onAction="#seleccionarPlaylist" style="-fx-background-color: #B1896A; -fx-border-color: #000000; -fx-border-radius: 5px; -fx-background-radius: 10px;" text="Seleccionar Playlist" textFill="WHITE" />
+      <Button layoutX="460.0" layoutY="358.0" mnemonicParsing="false" onAction="#seleccionarPlaylist" style="-fx-background-color: #B1896A; -fx-border-color: #000000; -fx-border-radius: 5px; -fx-background-radius: 10px;" text="Seleccionar Playlist" textFill="WHITE" />
+      <Button layoutX="20.0" layoutY="358.0" mnemonicParsing="false" onAction="#seleccionarVideo" style="-fx-background-color: #B1896A; -fx-border-color: #000000; -fx-border-radius: 5px; -fx-background-radius: 10px;" text="Seleccionar Video" textFill="WHITE" />
    </children>
 </AnchorPane>
