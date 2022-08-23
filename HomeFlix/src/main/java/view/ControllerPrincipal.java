@@ -167,6 +167,19 @@ public class ControllerPrincipal implements Initializable {
 
     }
 
+    public void seleccionarVideo(ActionEvent event) throws IOException {
+        ObservableList<Video> videoSeleccionado;
+        videoSeleccionado = tblVideoReciente.getSelectionModel().getSelectedItems();
+        String path = videoSeleccionado.get(0).getLocalizacion();
+        ControllerReproductor.setPath(path);
+
+        root = FXMLLoader.load(getClass().getResource("Reproductor.fxml"));
+        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+    }
+
     public void seleccionarPlaylist(ActionEvent event) throws IOException {
         ObservableList<Playlist> playlistSeleccionado;
         playlistSeleccionado = tblPlaylist.getSelectionModel().getSelectedItems();
