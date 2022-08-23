@@ -6,8 +6,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-
-<AnchorPane prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #FF8C00;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.PantallaCarga">
+<AnchorPane prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #FF8C00;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <Button layoutX="461.0" layoutY="331.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="92.0" style="-fx-background-color: #B1896A; -fx-border-color: #000000;" text="Conectar" textFill="WHITE" />
       <Button layoutX="52.0" layoutY="331.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="92.0" style="-fx-background-color: #B1896A; -fx-border-color: #000000;" text="Salir" textFill="WHITE" />
