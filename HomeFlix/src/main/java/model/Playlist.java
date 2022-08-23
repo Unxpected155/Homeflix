@@ -24,6 +24,10 @@ public class Playlist {
         this.duracion = duracion;
     }
 
+    public Playlist(){
+
+    }
+
     public ArrayList<Video> getListaReproduccion() {
         return listaReproduccion;
     }
