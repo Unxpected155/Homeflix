@@ -12,7 +12,7 @@
    <children>
       <Button layoutX="87.0" layoutY="358.0" mnemonicParsing="false" onAction="#botonBusqueda" style="-fx-background-color: #B1896A; -fx-border-color: #000000; -fx-border-radius: 5px; -fx-background-radius: 10px;" text="Buscar" textFill="WHITE" />
       <Button layoutX="282.0" layoutY="358.0" mnemonicParsing="false" onAction="#botonJoinServer" style="-fx-background-color: #B1896A; -fx-border-color: #000000; -fx-border-radius: 5px; -fx-background-radius: 10px;" text="Join" textFill="WHITE" />
-      <Button layoutX="455.0" layoutY="358.0" mnemonicParsing="false" onAction="#botonStartHost" style="-fx-background-color: #B1896A; -fx-border-color: #000000; -fx-border-radius: 5px; -fx-background-radius: 10px;" text="Start Host" textFill="WHITE" />
+      <Button layoutX="455.0" layoutY="358.0" mnemonicParsing="false" onAction="#iniciarServidor" style="-fx-background-color: #B1896A; -fx-border-color: #000000; -fx-border-radius: 5px; -fx-background-radius: 10px;" text="Start Host" textFill="WHITE" />
       <Label layoutX="70.0" layoutY="117.0" text="Ultimos Videos Vistos">
          <font>
             <Font size="18.0" />
