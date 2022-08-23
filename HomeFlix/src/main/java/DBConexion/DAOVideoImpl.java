@@ -116,4 +116,33 @@ public class DAOVideoImpl extends DBConexion implements DAOVideo {
         }
         return listarVideos;
     }
+
+    @Override
+    public ArrayList<Video> listarVideoPlaylist(String nombre) throws Exception {
+        ArrayList<Video> videosPlaylist;
+        try{
+            this.conectar();
+            PreparedStatement prs = this.conexion.prepareStatement("SELECT * FROM playlist INNER JOIN playlist_has_video ON playlist.idplaylist = playlist_has_video.playlist_idplaylist INNER JOIN video on playlist_has_video.video_idvideo = video.idvideo WHERE playlist.nombre = ?");
+            prs.setString(1, nombre);
+            videosPlaylist = new ArrayList<>();
+            ResultSet rs = prs.executeQuery();
+            while(rs.next()){
+                Video video = new Video();
+                video.setName(rs.getString("video.nombre"));
+                video.setDuracion(rs.getString("video.duracion"));
+                video.setCategory(rs.getString("categoria"));
+                video.setDate(rs.getString("fechaAnadido"));
+                video.setDescripcion(rs.getString("descripcion"));
+                video.setLocalizacion(rs.getString("localizacion"));
+                videosPlaylist.add(video);
+            }
+            rs.close();
+            prs.close();
+        } catch (Exception e){
+            throw e;
+        } finally {
+            this.cerrar();
+        }
+        return videosPlaylist;
+    }
 }

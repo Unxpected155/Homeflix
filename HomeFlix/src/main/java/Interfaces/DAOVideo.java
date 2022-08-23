@@ -36,4 +36,6 @@ public interface DAOVideo {
      * @throws Exception En caso de que el query tenga un error
      */
     public ArrayList<Video> listarVideoNC(String nombre, String categoria) throws Exception;
+
+    public ArrayList<Video> listarVideoPlaylist(String nombre) throws Exception;
 }

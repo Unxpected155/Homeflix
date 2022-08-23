@@ -484,7 +484,7 @@ public class ControllerReproductor implements Initializable {
      * @throws IOException Recibe un parametro IOException
      */
     public void volverBusqueda(ActionEvent event) throws IOException {
-        root = FXMLLoader.load(getClass().getResource("Busqueda.fxml"));
+        root = FXMLLoader.load(getClass().getResource("Principal.fxml"));
         stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
         scene = new Scene(root);
         stage.setScene(scene);
