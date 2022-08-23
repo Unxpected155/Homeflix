@@ -4,12 +4,33 @@ import Interfaces.DAOPlaylist;
 import model.Playlist;
 
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.util.ArrayList;
 
 public class DAOPlaylistImpl extends DBConexion implements DAOPlaylist {
     @Override
-    public ArrayList<Playlist> listarPlaylists() throws Exception {
-        return null;
+    public ArrayList<Playlist> listarPlaylists(int idUsuario) throws Exception {
+        ArrayList<Playlist> listarPlaylists;
+        try{
+            this.conectar();
+            PreparedStatement prs = this.conexion.prepareStatement("SELECT * FROM playlist WHERE usuario_idusuario = ?");
+            prs.setInt(1, idUsuario);
+            listarPlaylists = new ArrayList<>();
+            ResultSet rs = prs.executeQuery();
+            while(rs.next()) {
+                Playlist playlist = new Playlist();
+                String retrievedNombre = rs.getString("nombre");
+                String retrievedFechaCreacion = rs.getString("fechaCreacion");
+                playlist.setNombre(retrievedNombre);
+                playlist.setFechaCreacion(retrievedFechaCreacion);
+                listarPlaylists.add(playlist);
+            }
+        } catch (Exception e){
+            throw e;
+        } finally {
+            this.cerrar();
+        }
+        return listarPlaylists;
     }
 
     @Override
