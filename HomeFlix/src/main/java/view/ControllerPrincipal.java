@@ -134,6 +134,17 @@ public class ControllerPrincipal implements Initializable {
 
     }
 
+    public void seleccionarPlaylist(ActionEvent event) throws IOException {
+        ObservableList<Playlist> playlistSeleccionado;
+        playlistSeleccionado = tblPlaylist.getSelectionModel().getSelectedItems();
+        String nombrePlaylist = playlistSeleccionado.get(0).getNombre();
+
+        root = FXMLLoader.load(getClass().getResource("SeleccionarVideoPlaylist.fxml"));
+        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+    }
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
