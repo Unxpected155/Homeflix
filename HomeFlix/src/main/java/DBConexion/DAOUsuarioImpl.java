@@ -7,6 +7,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.stage.Stage;
 import model.Usuario;
+import view.ControllerLogin;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -123,12 +124,13 @@ public class DAOUsuarioImpl extends DBConexion implements DAOUsuario {
     public boolean revisarContrasenia(String contrasenia,String usuario) throws SQLException{
 
             this.conectar();
-            PreparedStatement prs = this.conexion.prepareStatement("SELECT contrasena FROM usuario WHERE nombreUsuario = ?");
+            PreparedStatement prs = this.conexion.prepareStatement("SELECT contrasena, idusuario FROM usuario WHERE nombreUsuario = ?");
             prs.setString(1, usuario);
             ResultSet resultSet = prs.executeQuery();
             while(resultSet.next()){
                 String retrievedPassword = resultSet.getString("contrasena");
                 if (retrievedPassword.equals(contrasenia)) {
+                    ControllerLogin.setIdUsuarioIngresado(Integer.parseInt(resultSet.getString("idusuario")));
                     return true;
                 }
             }
