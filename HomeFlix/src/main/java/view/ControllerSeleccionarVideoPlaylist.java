@@ -59,6 +59,13 @@ public class ControllerSeleccionarVideoPlaylist implements Initializable {
     private Scene scene;
     private Parent root;
 
+    public void volverPrincipal(ActionEvent event) throws IOException {
+        root = FXMLLoader.load(getClass().getResource("Principal.fxml"));
+        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+    }
 
 
     @Override
