@@ -1,5 +1,6 @@
 package view;
 
+import Threads.ProcesoServidor;
 import com.almasb.fxgl.entity.action.Action;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -95,5 +96,13 @@ public class ControllerPrincipal {
         scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
+    }
+
+    public void iniciarServidor(){
+
+        ProcesoServidor levantarServidor = new ProcesoServidor();
+
+        levantarServidor.start();
+
     }
 }
