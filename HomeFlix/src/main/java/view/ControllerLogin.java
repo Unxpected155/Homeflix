@@ -26,6 +26,16 @@ public class ControllerLogin {
     private Scene scene;
     private Parent root;
 
+    public static int idUsuarioIngresado;
+
+    public static int getIdUsuarioIngresado() {
+        return idUsuarioIngresado;
+    }
+
+    public static void setIdUsuarioIngresado(int idUsuarioIngresado) {
+        ControllerLogin.idUsuarioIngresado = idUsuarioIngresado;
+    }
+
     /**
      * Cambia la pantalla actual hacia la pantalla de registro
      * @author Luis Diego Obando
