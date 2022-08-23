@@ -74,7 +74,7 @@ public class ControllerPrincipal {
     }
 
     public void botonAgregarPlaylist(ActionEvent event) throws IOException{
-        root = FXMLLoader.load(getClass().getResource("AgregarVideo.fxml"));
+        root = FXMLLoader.load(getClass().getResource("AgregarPlaylist.fxml"));
         stage = (Stage)((Node)event.getSource()).getScene().getWindow();
         scene = new Scene(root);
         stage.setScene(scene);
