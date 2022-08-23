@@ -8,6 +8,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
@@ -35,6 +36,9 @@ public class ControllerAgregarPlaylist {
         try {
             DAOPlaylist daoPlaylist = new DAOPlaylistImpl();
             daoPlaylist.agregarPlaylist(nombre, "00:00", fechaAnadido, ControllerLogin.getIdUsuarioIngresado());
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setContentText("El playlist fue agregado exitosamente");
+            alert.show();
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }

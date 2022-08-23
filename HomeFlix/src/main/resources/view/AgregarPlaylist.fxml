@@ -15,7 +15,7 @@
                 <Font size="25.0" />
             </font>
         </Text>
-        <TextField fx:id="nombreTF" layoutX="226.0" layoutY="228.0" />
+        <TextField fx:id="nombrePlaylist" layoutX="226.0" layoutY="228.0" />
         <Text layoutX="232.0" layoutY="218.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nombre del Playlist">
             <font>
                 <Font size="16.0" />
