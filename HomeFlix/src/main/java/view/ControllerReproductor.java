@@ -1,5 +1,6 @@
 package view;
 
+import Threads.ProcesoServidor;
 import javafx.beans.InvalidationListener;
 import javafx.beans.Observable;
 import javafx.beans.binding.Bindings;
@@ -105,6 +106,10 @@ public class ControllerReproductor implements Initializable {
 
     public static void setPath(String path) {
         ControllerReproductor.path = path;
+    }
+
+    public static String getPath() {
+        return path;
     }
 
     /**

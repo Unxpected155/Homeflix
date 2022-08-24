@@ -152,20 +152,14 @@ public class ControllerPrincipal implements Initializable {
     }
 
     public void botonStartHost(ActionEvent event) throws IOException {
-        root = FXMLLoader.load(getClass().getResource("IniciarHost.fxml"));
+        root = FXMLLoader.load(getClass().getResource("HostBusqueda.fxml"));
         stage = (Stage)((Node)event.getSource()).getScene().getWindow();
         scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
     }
 
-    public void iniciarServidor(){
 
-        ProcesoServidor levantarServidor = new ProcesoServidor();
-
-        levantarServidor.start();
-
-    }
 
     public void seleccionarVideo(ActionEvent event) throws IOException {
         ObservableList<Video> videoSeleccionado;
