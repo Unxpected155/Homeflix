@@ -36,6 +36,10 @@ public class ControllerAgregarPlaylist {
         stage.show();
     }
 
+    /**
+     * @author Michael Ng
+     *funcion que agrega una playlist a la base de datos
+     */
     public void botonAgregar(){
         String nombre = nombrePlaylist.getText();
         String fechaAnadido = java.time.LocalDate.now().toString();
