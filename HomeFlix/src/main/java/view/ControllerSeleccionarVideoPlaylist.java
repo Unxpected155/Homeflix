@@ -93,6 +93,14 @@ public class ControllerSeleccionarVideoPlaylist implements Initializable {
         stage.show();
     }
 
+    public void agregarVideo(ActionEvent event) throws IOException {
+        root = FXMLLoader.load(getClass().getResource("AgregarVideoPlaylist.fxml"));
+        stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+    }
+
     /**
      *
      * @author Luis Diego Obando
