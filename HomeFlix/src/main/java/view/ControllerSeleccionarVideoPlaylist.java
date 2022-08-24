@@ -87,7 +87,13 @@ public class ControllerSeleccionarVideoPlaylist implements Initializable {
         stage.show();
     }
 
-
+    /**
+     *
+     * @author Luis Diego Obando
+     * Funcion inicializar que se encarga de inicializar objetos dentro de ella para poder ser utilizados y ejecutados
+     * @param url Recibe un objeto tipo url
+     * @param resourceBundle recibe un objeto tipo resourceBundle
+     */
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         namePlaylist.setText("Playlist " + nombrePlaylist);
