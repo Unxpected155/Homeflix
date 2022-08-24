@@ -59,6 +59,12 @@ public class ControllerSeleccionarVideoPlaylist implements Initializable {
     private Scene scene;
     private Parent root;
 
+    /**
+     * @author Michael Ng
+     * Funcion que se encarga de volver a la pagina principal.
+     * @param event parametro que recibe un objeti ActionEvent
+     * @throws IOException signo de que algun tipo de excepcion ha ocurrido.
+     */
     public void volverPrincipal(ActionEvent event) throws IOException {
         root = FXMLLoader.load(getClass().getResource("Principal.fxml"));
         stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
@@ -66,6 +72,13 @@ public class ControllerSeleccionarVideoPlaylist implements Initializable {
         stage.setScene(scene);
         stage.show();
     }
+
+    /**
+     * @author Michael Ng
+     * Funcion que se encarga de permitir al usuario seleccionar un video.
+     * @param event recibe un parametro de evento.
+     * @throws IOException signo de que algun tipo de excepcion ha ocurrido.
+     */
     public void seleccionarVideo(ActionEvent event) throws IOException {
         ObservableList<Video> videoSeleccionado;
         videoSeleccionado = tblVideos.getSelectionModel().getSelectedItems();
@@ -80,7 +93,13 @@ public class ControllerSeleccionarVideoPlaylist implements Initializable {
         stage.show();
     }
 
-
+    /**
+     *
+     * @author Luis Diego Obando
+     * Funcion inicializar que se encarga de inicializar objetos dentro de ella para poder ser utilizados y ejecutados
+     * @param url Recibe un objeto tipo url
+     * @param resourceBundle recibe un objeto tipo resourceBundle
+     */
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         namePlaylist.setText("Playlist " + nombrePlaylist);
