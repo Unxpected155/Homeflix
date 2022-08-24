@@ -22,6 +22,12 @@ public class ControllerAgregarPlaylist {
     private Scene scene;
     private Parent root;
 
+    /**
+     * @author Luis Diego Obando
+     * Funcion que se encarga de volver a la pagina principal.
+     * @param event parametro que recibe un objeti ActionEvent
+     * @throws IOException signo de que algun tipo de excepcion ha ocurrido.
+     */
     public void volverPrincipal(ActionEvent event) throws IOException {
         root = FXMLLoader.load(getClass().getResource("Principal.fxml"));
         stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
@@ -30,6 +36,10 @@ public class ControllerAgregarPlaylist {
         stage.show();
     }
 
+    /**
+     * @author Michael Ng
+     *funcion que agrega una playlist a la base de datos
+     */
     public void botonAgregar(){
         String nombre = nombrePlaylist.getText();
         String fechaAnadido = java.time.LocalDate.now().toString();
