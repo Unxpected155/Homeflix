@@ -22,6 +22,12 @@ public interface DAOPlaylist {
      */
     public void agregarPlaylist(String nombre, String duracion, String fechaCreacion, int idUsuario) throws Exception;
 
+    /**
+     * @author Michael NG
+     * @param idPlaylist recibe un parametro de tipo int y es para identificar cual es la playlist seleccionada
+     * @param idVideo recibe un parametro de tipo int y es para identificar cual es el video seleccionado
+     * @throws Exception En caso de que el query tenga un error
+     */
     public void agregarVideoPlaylist(int idPlaylist, int idVideo) throws Exception;
 
 }
